@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wiki about Containers</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+  <div id="header"></div>
+
+  <main>
+    <h1 id="docker-containers-essential-commands">Docker Containers:
+Essential Commands</h1>
+<p>Master the Docker CLI to build, run, and manage containers
+efficiently.</p>
+<hr />
+<h2 id="mag-inspecting-docker-environment">🔍 Inspecting Docker
+Environment</h2>
+<ul>
+<li><p><code>docker version</code><br />
+Show Docker client and server versions.</p></li>
+<li><p><code>docker info</code><br />
+Get system-wide Docker information.</p></li>
+</ul>
+<hr />
+<h2 id="package-managing-images">📦 Managing Images</h2>
+<ul>
+<li><p><code>docker images</code><br />
+List locally available Docker images.</p></li>
+<li><p><code>docker pull {{CONTENT}}lt;image{{CONTENT}}gt;</code><br />
+Download image from Docker Hub.</p></li>
+<li><p><code>docker rmi {{CONTENT}}lt;image{{CONTENT}}gt;</code><br />
+Remove an image.</p></li>
+</ul>
+<hr />
+<h2 id="rocket-running-containers">🚀 Running Containers</h2>
+<ul>
+<li><p><code>docker run {{CONTENT}}lt;image{{CONTENT}}gt;</code><br />
+Run a container from an image.</p></li>
+<li><p><code>docker run -it ubuntu bash</code><br />
+Run Ubuntu interactively with a shell.</p></li>
+<li><p><code>docker run -d -p 8080:80 nginx</code><br />
+Detached Nginx server on port 8080.</p></li>
+</ul>
+<hr />
+<h2 id="compass-managing-running-containers">🧭 Managing Running
+Containers</h2>
+<ul>
+<li><p><code>docker ps</code><br />
+List running containers.</p></li>
+<li><p><code>docker ps -a</code><br />
+List all containers (including stopped).</p></li>
+<li><p><code>docker stop {{CONTENT}}lt;container{{CONTENT}}gt;</code><br />
+Gracefully stop a container.</p></li>
+<li><p><code>docker kill {{CONTENT}}lt;container{{CONTENT}}gt;</code><br />
+Force-stop a container.</p></li>
+<li><p><code>docker start {{CONTENT}}lt;container{{CONTENT}}gt;</code><br />
+Restart a stopped container.</p></li>
+</ul>
+<hr />
+<h2 id="hammer_and_wrench-exec-and-logs">🛠️ Exec and Logs</h2>
+<ul>
+<li><p><code>docker exec -it {{CONTENT}}lt;container{{CONTENT}}gt; bash</code><br />
+Open a shell in a running container.</p></li>
+<li><p><code>docker logs {{CONTENT}}lt;container{{CONTENT}}gt;</code><br />
+View container logs.</p></li>
+</ul>
+<hr />
+<h2 id="broom-clean-up">🧹 Clean Up</h2>
+<ul>
+<li><p><code>docker rm {{CONTENT}}lt;container{{CONTENT}}gt;</code><br />
+Remove a stopped container.</p></li>
+<li><p><code>docker system prune</code><br />
+Remove all unused containers, images, and networks.</p></li>
+</ul>
+  </main>
+
+  <div id="footer"></div>
+  <script src="../assets/js/utils/component-loader.js"></script>
+</body>
+</html>

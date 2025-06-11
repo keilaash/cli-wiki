@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Miscellaneous</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+  <div id="header"></div>
+
+  <main>
+    <h1 id="yt-dlp-download-media-from-youtube-and-more">yt-dlp: Download
+Media from YouTube and More</h1>
+<p><code>yt-dlp</code> is a powerful command-line tool for downloading
+videos and extracting audio from YouTube and many other sites.</p>
+<hr />
+<h2 id="film_strip-download-1080p-mp4-video">🎞️ Download 1080p MP4
+Video</h2>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">yt-dlp</span> <span class="at">-f</span> <span class="st">{{CONTENT}}quot;bestvideo[height{{CONTENT}}lt;=1080]+bestaudio/best[height{{CONTENT}}lt;=1080]{{CONTENT}}quot;</span> <span class="dt"></span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>-o <span class="st">{{CONTENT}}quot;%(title)s.%(ext)s{{CONTENT}}quot;</span> <span class="st">{{CONTENT}}quot;https://www.youtube.com/watch?v=VIDEO_ID{{CONTENT}}quot;</span></span></code></pre></div>
+<ul>
+<li>Downloads the best video/audio up to 1080p</li>
+<li>Merges them into one <code>.mp4</code> file</li>
+<li>Outputs file as <code>Video Title.mp4</code></li>
+</ul>
+<hr />
+<h2 id="musical_note-download-mp3-audio-only">🎵 Download MP3 Audio
+Only</h2>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">yt-dlp</span> <span class="at">-x</span> <span class="at">--audio-format</span> mp3 <span class="dt"></span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>-o <span class="st">{{CONTENT}}quot;%(title)s.%(ext)s{{CONTENT}}quot;</span> <span class="st">{{CONTENT}}quot;https://www.youtube.com/watch?v=VIDEO_ID{{CONTENT}}quot;</span></span></code></pre></div>
+<ul>
+<li><code>-x</code>: Extracts audio</li>
+<li><code>--audio-format mp3</code>: Converts to MP3</li>
+<li>Output will be <code>Video Title.mp3</code></li>
+</ul>
+<hr />
+<h2 id="hammer_and_wrench-useful-add-ons">🛠️ Useful Add-ons</h2>
+<ul>
+<li><code>--embed-thumbnail</code> — Embed thumbnail as album art</li>
+<li><code>--add-metadata</code> — Add ID3 tags (title, artist,
+etc.)</li>
+<li><code>--no-playlist</code> — Prevent downloading an entire
+playlist</li>
+<li><code>-i</code> — Ignore errors (useful in batch jobs)</li>
+</ul>
+<hr />
+<h2 id="inbox_tray-example-batch-download-playlist-as-mp3s">📥 Example:
+Batch Download Playlist as MP3s</h2>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">yt-dlp</span> <span class="at">-i</span> <span class="at">-x</span> <span class="at">--audio-format</span> mp3 <span class="at">--embed-thumbnail</span> <span class="dt"></span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>--add-metadata <span class="st">{{CONTENT}}quot;https://www.youtube.com/playlist?list=YOUR_PLAYLIST_ID{{CONTENT}}quot;</span></span></code></pre></div>
+<hr />
+<h2 id="package-install-yt-dlp">📦 Install yt-dlp</h2>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-U</span> yt-dlp</span></code></pre></div>
+<hr />
+<h2 id="brain-why-yt-dlp">🧠 Why yt-dlp?</h2>
+<ul>
+<li>Actively maintained (a fork of <code>youtube-dl</code>)</li>
+<li>Supports more sites and formats</li>
+<li>Faster, more flexible</li>
+</ul>
+  </main>
+
+  <div id="footer"></div>
+  <script src="../assets/js/utils/component-loader.js"></script>
+</body>
+</html>
