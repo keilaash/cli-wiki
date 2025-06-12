@@ -2,80 +2,461 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Wiki about Containers</title>
+  <title>Containers</title>
   <link rel="stylesheet" href="../assets/css/styles.css" />
+<link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
   <div id="header"></div>
 
   <main>
-    <h1 id="docker-containers-essential-commands">Docker Containers:
-Essential Commands</h1>
-<p>Master the Docker CLI to build, run, and manage containers
-efficiently.</p>
-<hr />
-<h2 id="mag-inspecting-docker-environment">🔍 Inspecting Docker
-Environment</h2>
-<ul>
-<li><p><code>docker version</code><br />
-Show Docker client and server versions.</p></li>
-<li><p><code>docker info</code><br />
-Get system-wide Docker information.</p></li>
-</ul>
-<hr />
-<h2 id="package-managing-images">📦 Managing Images</h2>
-<ul>
-<li><p><code>docker images</code><br />
-List locally available Docker images.</p></li>
-<li><p><code>docker pull {{CONTENT}}lt;image{{CONTENT}}gt;</code><br />
-Download image from Docker Hub.</p></li>
-<li><p><code>docker rmi {{CONTENT}}lt;image{{CONTENT}}gt;</code><br />
-Remove an image.</p></li>
-</ul>
-<hr />
-<h2 id="rocket-running-containers">🚀 Running Containers</h2>
-<ul>
-<li><p><code>docker run {{CONTENT}}lt;image{{CONTENT}}gt;</code><br />
-Run a container from an image.</p></li>
-<li><p><code>docker run -it ubuntu bash</code><br />
-Run Ubuntu interactively with a shell.</p></li>
-<li><p><code>docker run -d -p 8080:80 nginx</code><br />
-Detached Nginx server on port 8080.</p></li>
-</ul>
-<hr />
-<h2 id="compass-managing-running-containers">🧭 Managing Running
-Containers</h2>
-<ul>
-<li><p><code>docker ps</code><br />
-List running containers.</p></li>
-<li><p><code>docker ps -a</code><br />
-List all containers (including stopped).</p></li>
-<li><p><code>docker stop {{CONTENT}}lt;container{{CONTENT}}gt;</code><br />
-Gracefully stop a container.</p></li>
-<li><p><code>docker kill {{CONTENT}}lt;container{{CONTENT}}gt;</code><br />
-Force-stop a container.</p></li>
-<li><p><code>docker start {{CONTENT}}lt;container{{CONTENT}}gt;</code><br />
-Restart a stopped container.</p></li>
-</ul>
-<hr />
-<h2 id="hammer_and_wrench-exec-and-logs">🛠️ Exec and Logs</h2>
-<ul>
-<li><p><code>docker exec -it {{CONTENT}}lt;container{{CONTENT}}gt; bash</code><br />
-Open a shell in a running container.</p></li>
-<li><p><code>docker logs {{CONTENT}}lt;container{{CONTENT}}gt;</code><br />
-View container logs.</p></li>
-</ul>
-<hr />
-<h2 id="broom-clean-up">🧹 Clean Up</h2>
-<ul>
-<li><p><code>docker rm {{CONTENT}}lt;container{{CONTENT}}gt;</code><br />
-Remove a stopped container.</p></li>
-<li><p><code>docker system prune</code><br />
-Remove all unused containers, images, and networks.</p></li>
-</ul>
+    <h1 id="docker-command-wiki">Docker Command Wiki</h1><br>
+<p>A comprehensive guide to installing, managing, and using Docker<br>
+containers.</p><br>
+<h2 id="installation">Installation</h2><br>
+<h3 id="ubuntudebian">Ubuntu/Debian</h3><br>
+<pre><code>sudo apt update<br>
+sudo apt install apt-transport-https ca-certificates curl software-properties-common<br>
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg<br>
+echo {{CONTENT}}quot;deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable{{CONTENT}}quot; | sudo tee /etc/apt/sources.list.d/docker.list {{CONTENT}}gt; /dev/null<br>
+sudo apt update<br>
+sudo apt install docker-ce docker-ce-cli containerd.io</code></pre><br>
+<h3 id="centosrhelfedora">CentOS/RHEL/Fedora</h3><br>
+<pre><code>sudo yum install -y yum-utils<br>
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo<br>
+sudo yum install docker-ce docker-ce-cli containerd.io</code></pre><br>
+<h3 id="macos">macOS</h3><br>
+<p>Install Docker Desktop from <a<br>
+href="https://docker.com/products/docker-desktop">https://docker.com/products/docker-desktop</a></p><br>
+<h3 id="windows">Windows</h3><br>
+<p>Install Docker Desktop from <a<br>
+href="https://docker.com/products/docker-desktop">https://docker.com/products/docker-desktop</a></p><br>
+<h3 id="post-installation-setup">Post-Installation Setup</h3><br>
+<p>Add your user to docker group (Linux):</p><br>
+<pre><code>sudo usermod -aG docker $USER<br>
+newgrp docker</code></pre><br>
+<p>Start Docker service:</p><br>
+<pre><code>sudo systemctl start docker<br>
+sudo systemctl enable docker</code></pre><br>
+<p>Verify installation:</p><br>
+<pre><code>docker --version<br>
+docker run hello-world</code></pre><br>
+<h2 id="basic-container-operations">Basic Container Operations</h2><br>
+<h3 id="run-a-container">Run a container</h3><br>
+<pre><code>docker run ubuntu</code></pre><br>
+<h3 id="run-container-interactively">Run container interactively</h3><br>
+<pre><code>docker run -it ubuntu bash</code></pre><br>
+<h3 id="run-container-in-background-detached">Run container in<br>
+background (detached)</h3><br>
+<pre><code>docker run -d nginx</code></pre><br>
+<h3 id="run-with-custom-name">Run with custom name</h3><br>
+<pre><code>docker run --name my-nginx nginx</code></pre><br>
+<h3 id="run-with-port-mapping">Run with port mapping</h3><br>
+<pre><code>docker run -p 8080:80 nginx</code></pre><br>
+<h3 id="run-with-volume-mounting">Run with volume mounting</h3><br>
+<pre><code>docker run -v /host/path:/container/path ubuntu</code></pre><br>
+<h3 id="run-with-environment-variables">Run with environment<br>
+variables</h3><br>
+<pre><code>docker run -e MYSQL_ROOT_PASSWORD=mypassword mysql</code></pre><br>
+<h3 id="run-and-remove-when-stopped">Run and remove when stopped</h3><br>
+<pre><code>docker run --rm ubuntu echo {{CONTENT}}quot;Hello World{{CONTENT}}quot;</code></pre><br>
+<h2 id="container-management">Container Management</h2><br>
+<h3 id="list-running-containers">List running containers</h3><br>
+<pre><code>docker ps</code></pre><br>
+<h3 id="list-all-containers-including-stopped">List all containers<br>
+(including stopped)</h3><br>
+<pre><code>docker ps -a</code></pre><br>
+<h3 id="stop-a-container">Stop a container</h3><br>
+<pre><code>docker stop container_name</code></pre><br>
+<h3 id="start-a-stopped-container">Start a stopped container</h3><br>
+<pre><code>docker start container_name</code></pre><br>
+<h3 id="restart-a-container">Restart a container</h3><br>
+<pre><code>docker restart container_name</code></pre><br>
+<h3 id="remove-a-container">Remove a container</h3><br>
+<pre><code>docker rm container_name</code></pre><br>
+<h3 id="remove-all-stopped-containers">Remove all stopped<br>
+containers</h3><br>
+<pre><code>docker container prune</code></pre><br>
+<h3 id="force-remove-a-running-container">Force remove a running<br>
+container</h3><br>
+<pre><code>docker rm -f container_name</code></pre><br>
+<h3 id="execute-command-in-running-container">Execute command in running<br>
+container</h3><br>
+<pre><code>docker exec -it container_name bash</code></pre><br>
+<h3 id="copy-files-tofrom-container">Copy files to/from container</h3><br>
+<pre><code>docker cp file.txt container_name:/path/to/destination<br>
+docker cp container_name:/path/to/file.txt ./local/path</code></pre><br>
+<h3 id="view-container-logs">View container logs</h3><br>
+<pre><code>docker logs container_name</code></pre><br>
+<h3 id="follow-logs-in-real-time">Follow logs in real-time</h3><br>
+<pre><code>docker logs -f container_name</code></pre><br>
+<h3 id="view-container-resource-usage">View container resource<br>
+usage</h3><br>
+<pre><code>docker stats</code></pre><br>
+<h3 id="inspect-container-details">Inspect container details</h3><br>
+<pre><code>docker inspect container_name</code></pre><br>
+<h2 id="image-management">Image Management</h2><br>
+<h3 id="list-local-images">List local images</h3><br>
+<pre><code>docker images</code></pre><br>
+<h3 id="pull-an-image-from-registry">Pull an image from registry</h3><br>
+<pre><code>docker pull ubuntu:20.04</code></pre><br>
+<h3 id="remove-an-image">Remove an image</h3><br>
+<pre><code>docker rmi image_name</code></pre><br>
+<h3 id="remove-unused-images">Remove unused images</h3><br>
+<pre><code>docker image prune</code></pre><br>
+<h3 id="remove-all-unused-images">Remove all unused images</h3><br>
+<pre><code>docker image prune -a</code></pre><br>
+<h3 id="build-image-from-dockerfile">Build image from Dockerfile</h3><br>
+<pre><code>docker build -t my-app .</code></pre><br>
+<h3 id="build-with-custom-dockerfile-name">Build with custom Dockerfile<br>
+name</h3><br>
+<pre><code>docker build -t my-app -f custom.dockerfile .</code></pre><br>
+<h3 id="tag-an-image">Tag an image</h3><br>
+<pre><code>docker tag source_image:tag target_image:tag</code></pre><br>
+<h3 id="push-image-to-registry">Push image to registry</h3><br>
+<pre><code>docker push username/image_name:tag</code></pre><br>
+<h3 id="search-for-images">Search for images</h3><br>
+<pre><code>docker search nginx</code></pre><br>
+<h3 id="view-image-history">View image history</h3><br>
+<pre><code>docker history image_name</code></pre><br>
+<h2 id="docker-compose">Docker Compose</h2><br>
+<h3 id="install-docker-compose-linux">Install Docker Compose<br>
+(Linux)</h3><br>
+<pre><code>sudo curl -L {{CONTENT}}quot;https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m){{CONTENT}}quot; -o /usr/local/bin/docker-compose<br>
+sudo chmod +x /usr/local/bin/docker-compose</code></pre><br>
+<h3 id="start-services-defined-in-docker-composeyml">Start services<br>
+defined in docker-compose.yml</h3><br>
+<pre><code>docker-compose up</code></pre><br>
+<h3 id="start-services-in-background">Start services in background</h3><br>
+<pre><code>docker-compose up -d</code></pre><br>
+<h3 id="stop-services">Stop services</h3><br>
+<pre><code>docker-compose down</code></pre><br>
+<h3 id="view-running-services">View running services</h3><br>
+<pre><code>docker-compose ps</code></pre><br>
+<h3 id="view-logs">View logs</h3><br>
+<pre><code>docker-compose logs</code></pre><br>
+<h3 id="follow-logs">Follow logs</h3><br>
+<pre><code>docker-compose logs -f</code></pre><br>
+<h3 id="rebuild-and-start-services">Rebuild and start services</h3><br>
+<pre><code>docker-compose up --build</code></pre><br>
+<h3 id="scale-a-service">Scale a service</h3><br>
+<pre><code>docker-compose up --scale web=3</code></pre><br>
+<h3 id="execute-command-in-service">Execute command in service</h3><br>
+<pre><code>docker-compose exec service_name bash</code></pre><br>
+<h2 id="networking">Networking</h2><br>
+<h3 id="list-networks">List networks</h3><br>
+<pre><code>docker network ls</code></pre><br>
+<h3 id="create-a-network">Create a network</h3><br>
+<pre><code>docker network create my-network</code></pre><br>
+<h3 id="connect-container-to-network">Connect container to network</h3><br>
+<pre><code>docker network connect my-network container_name</code></pre><br>
+<h3 id="disconnect-container-from-network">Disconnect container from<br>
+network</h3><br>
+<pre><code>docker network disconnect my-network container_name</code></pre><br>
+<h3 id="run-container-on-specific-network">Run container on specific<br>
+network</h3><br>
+<pre><code>docker run --network my-network nginx</code></pre><br>
+<h3 id="remove-network">Remove network</h3><br>
+<pre><code>docker network rm my-network</code></pre><br>
+<h3 id="inspect-network">Inspect network</h3><br>
+<pre><code>docker network inspect my-network</code></pre><br>
+<h2 id="volumes">Volumes</h2><br>
+<h3 id="list-volumes">List volumes</h3><br>
+<pre><code>docker volume ls</code></pre><br>
+<h3 id="create-a-volume">Create a volume</h3><br>
+<pre><code>docker volume create my-volume</code></pre><br>
+<h3 id="remove-a-volume">Remove a volume</h3><br>
+<pre><code>docker volume rm my-volume</code></pre><br>
+<h3 id="remove-unused-volumes">Remove unused volumes</h3><br>
+<pre><code>docker volume prune</code></pre><br>
+<h3 id="inspect-volume">Inspect volume</h3><br>
+<pre><code>docker volume inspect my-volume</code></pre><br>
+<h3 id="run-container-with-named-volume">Run container with named<br>
+volume</h3><br>
+<pre><code>docker run -v my-volume:/data ubuntu</code></pre><br>
+<h3 id="run-container-with-bind-mount">Run container with bind<br>
+mount</h3><br>
+<pre><code>docker run -v /host/path:/container/path ubuntu</code></pre><br>
+<h2 id="common-docker-setups">Common Docker Setups</h2><br>
+<h3 id="web-server-nginx">Web Server (Nginx)</h3><br>
+<pre><code>docker run -d --name web-server -p 80:80 -v /path/to/html:/usr/share/nginx/html nginx</code></pre><br>
+<h3 id="database-mysql">Database (MySQL)</h3><br>
+<pre><code>docker run -d --name mysql-db -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=mydb -p 3306:3306 mysql:8.0</code></pre><br>
+<h3 id="database-postgresql">Database (PostgreSQL)</h3><br>
+<pre><code>docker run -d --name postgres-db -e POSTGRES_PASSWORD=password -e POSTGRES_DB=mydb -p 5432:5432 postgres:13</code></pre><br>
+<h3 id="redis-cache">Redis Cache</h3><br>
+<pre><code>docker run -d --name redis-cache -p 6379:6379 redis:alpine</code></pre><br>
+<h3 id="wordpress-with-mysql">WordPress with MySQL</h3><br>
+<pre><code>docker run -d --name wordpress-db -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=wordpress mysql:8.0<br>
+docker run -d --name wordpress-site --link wordpress-db:mysql -p 8080:80 -e WORDPRESS_DB_HOST=mysql -e WORDPRESS_DB_NAME=wordpress -e WORDPRESS_DB_PASSWORD=password wordpress</code></pre><br>
+<h3 id="nodejs-application">Node.js Application</h3><br>
+<pre><code>docker run -d --name node-app -p 3000:3000 -v /path/to/app:/usr/src/app -w /usr/src/app node:16 npm start</code></pre><br>
+<h2 id="dockerfile-examples">Dockerfile Examples</h2><br>
+<h3 id="basic-nodejs-dockerfile">Basic Node.js Dockerfile</h3><br>
+<p>Create a file named <code>Dockerfile</code>:</p><br>
+<pre><code>FROM node:16-alpine<br>
+WORKDIR /usr/src/app<br>
+COPY package*.json ./<br>
+RUN npm install<br>
+COPY . .<br>
+EXPOSE 3000<br>
+CMD [{{CONTENT}}quot;npm{{CONTENT}}quot;, {{CONTENT}}quot;start{{CONTENT}}quot;]</code></pre><br>
+<p>Build and run:</p><br>
+<pre><code>docker build -t my-node-app .<br>
+docker run -p 3000:3000 my-node-app</code></pre><br>
+<h3 id="basic-python-dockerfile">Basic Python Dockerfile</h3><br>
+<pre><code>FROM python:3.9-slim<br>
+WORKDIR /app<br>
+COPY requirements.txt .<br>
+RUN pip install -r requirements.txt<br>
+COPY . .<br>
+EXPOSE 5000<br>
+CMD [{{CONTENT}}quot;python{{CONTENT}}quot;, {{CONTENT}}quot;app.py{{CONTENT}}quot;]</code></pre><br>
+<h3 id="multi-stage-build-example">Multi-stage Build Example</h3><br>
+<pre><code>FROM node:16 AS builder<br>
+WORKDIR /app<br>
+COPY package*.json ./<br>
+RUN npm install<br>
+COPY . .<br>
+RUN npm run build<br>
+<br>
+FROM nginx:alpine<br>
+COPY --from=builder /app/build /usr/share/nginx/html<br>
+EXPOSE 80<br>
+CMD [{{CONTENT}}quot;nginx{{CONTENT}}quot;, {{CONTENT}}quot;-g{{CONTENT}}quot;, {{CONTENT}}quot;daemon off;{{CONTENT}}quot;]</code></pre><br>
+<h2 id="docker-compose-examples">Docker Compose Examples</h2><br>
+<h3 id="basic-docker-composeyml">Basic docker-compose.yml</h3><br>
+<pre><code>version: {{CONTENT}}#39;3.8{{CONTENT}}#39;<br>
+services:<br>
+  web:<br>
+    image: nginx<br>
+    ports:<br>
+      - {{CONTENT}}quot;80:80{{CONTENT}}quot;<br>
+    volumes:<br>
+      - ./html:/usr/share/nginx/html<br>
+  <br>
+  db:<br>
+    image: mysql:8.0<br>
+    environment:<br>
+      MYSQL_ROOT_PASSWORD: password<br>
+      MYSQL_DATABASE: myapp<br>
+    volumes:<br>
+      - db_data:/var/lib/mysql<br>
+<br>
+volumes:<br>
+  db_data:</code></pre><br>
+<h3 id="wordpress-with-docker-compose">WordPress with Docker<br>
+Compose</h3><br>
+<pre><code>version: {{CONTENT}}#39;3.8{{CONTENT}}#39;<br>
+services:<br>
+  wordpress:<br>
+    image: wordpress:latest<br>
+    ports:<br>
+      - {{CONTENT}}quot;8080:80{{CONTENT}}quot;<br>
+    environment:<br>
+      WORDPRESS_DB_HOST: db:3306<br>
+      WORDPRESS_DB_USER: wordpress<br>
+      WORDPRESS_DB_PASSWORD: password<br>
+      WORDPRESS_DB_NAME: wordpress<br>
+    depends_on:<br>
+      - db<br>
+  <br>
+  db:<br>
+    image: mysql:8.0<br>
+    environment:<br>
+      MYSQL_DATABASE: wordpress<br>
+      MYSQL_USER: wordpress<br>
+      MYSQL_PASSWORD: password<br>
+      MYSQL_ROOT_PASSWORD: rootpassword<br>
+    volumes:<br>
+      - db_data:/var/lib/mysql<br>
+<br>
+volumes:<br>
+  db_data:</code></pre><br>
+<h2 id="system-maintenance">System Maintenance</h2><br>
+<h3 id="view-docker-system-info">View Docker system info</h3><br>
+<pre><code>docker system info</code></pre><br>
+<h3 id="view-disk-usage">View disk usage</h3><br>
+<pre><code>docker system df</code></pre><br>
+<h3 id="clean-up-everything">Clean up everything</h3><br>
+<pre><code>docker system prune -a</code></pre><br>
+<h3 id="clean-up-with-volumes">Clean up with volumes</h3><br>
+<pre><code>docker system prune -a --volumes</code></pre><br>
+<h3 id="remove-all-containers">Remove all containers</h3><br>
+<pre><code>docker rm -f $(docker ps -aq)</code></pre><br>
+<h3 id="remove-all-images">Remove all images</h3><br>
+<pre><code>docker rmi -f $(docker images -q)</code></pre><br>
+<h3 id="update-all-images">Update all images</h3><br>
+<pre><code>docker images --format {{CONTENT}}quot;table {{.Repository}}:{{.Tag}}{{CONTENT}}quot; | tail -n +2 | xargs -L1 docker pull</code></pre><br>
+<h2 id="registry-operations">Registry Operations</h2><br>
+<h3 id="login-to-docker-registry">Login to Docker Registry</h3><br>
+<pre><code>docker login</code></pre><br>
+<h3 id="login-to-private-registry">Login to private registry</h3><br>
+<pre><code>docker login registry.example.com</code></pre><br>
+<h3 id="tag-for-registry">Tag for registry</h3><br>
+<pre><code>docker tag my-app username/my-app:v1.0</code></pre><br>
+<h3 id="push-to-registry">Push to registry</h3><br>
+<pre><code>docker push username/my-app:v1.0</code></pre><br>
+<h3 id="pull-from-private-registry">Pull from private registry</h3><br>
+<pre><code>docker pull registry.example.com/my-app:v1.0</code></pre><br>
+<h2 id="troubleshooting">Troubleshooting</h2><br>
+<h3 id="container-wont-start">Container won't start</h3><br>
+<p>Check logs:</p><br>
+<pre><code>docker logs container_name</code></pre><br>
+<h3 id="permission-denied-errors">Permission denied errors</h3><br>
+<p>Fix ownership (Linux):</p><br>
+<pre><code>sudo chown -R $USER:$USER /path/to/files</code></pre><br>
+<h3 id="port-already-in-use">Port already in use</h3><br>
+<p>Find process using port:</p><br>
+<pre><code>sudo lsof -i :8080</code></pre><br>
+<p>Kill process:</p><br>
+<pre><code>sudo kill -9 PID</code></pre><br>
+<h3 id="out-of-disk-space">Out of disk space</h3><br>
+<p>Clean up Docker:</p><br>
+<pre><code>docker system prune -a --volumes</code></pre><br>
+<h3 id="container-runs-but-app-doesnt-work">Container runs but app<br>
+doesn't work</h3><br>
+<p>Check if container is listening on correct port:</p><br>
+<pre><code>docker exec container_name netstat -tlnp</code></pre><br>
+<h3 id="cant-connect-to-docker-daemon">Can't connect to Docker<br>
+daemon</h3><br>
+<p>Start Docker service:</p><br>
+<pre><code>sudo systemctl start docker</code></pre><br>
+<p>Add user to docker group:</p><br>
+<pre><code>sudo usermod -aG docker $USER</code></pre><br>
+<h2 id="security-best-practices">Security Best Practices</h2><br>
+<h3 id="run-containers-as-non-root-user">Run containers as non-root<br>
+user</h3><br>
+<pre><code>docker run --user 1000:1000 ubuntu</code></pre><br>
+<h3 id="limit-container-resources">Limit container resources</h3><br>
+<pre><code>docker run --memory={{CONTENT}}quot;256m{{CONTENT}}quot; --cpus={{CONTENT}}quot;1.0{{CONTENT}}quot; ubuntu</code></pre><br>
+<h3 id="use-read-only-filesystem">Use read-only filesystem</h3><br>
+<pre><code>docker run --read-only ubuntu</code></pre><br>
+<h3 id="drop-capabilities">Drop capabilities</h3><br>
+<pre><code>docker run --cap-drop=ALL --cap-add=NET_BIND_SERVICE nginx</code></pre><br>
+<h3 id="scan-images-for-vulnerabilities">Scan images for<br>
+vulnerabilities</h3><br>
+<pre><code>docker scout quickview image_name</code></pre><br>
+<h3 id="use-official-images-when-possible">Use official images when<br>
+possible</h3><br>
+<pre><code>docker pull nginx:alpine</code></pre><br>
+<h2 id="performance-tips">Performance Tips</h2><br>
+<h3 id="use-specific-image-tags">Use specific image tags</h3><br>
+<p>Instead of:</p><br>
+<pre><code>docker pull nginx:latest</code></pre><br>
+<p>Use:</p><br>
+<pre><code>docker pull nginx:1.21-alpine</code></pre><br>
+<h3 id="use-multi-stage-builds">Use multi-stage builds</h3><br>
+<p>Reduces final image size by excluding build dependencies.</p><br>
+<h3 id="use-dockerignore">Use .dockerignore</h3><br>
+<p>Create <code>.dockerignore</code> file to exclude unnecessary<br>
+files:</p><br>
+<pre><code>node_modules<br>
+.git<br>
+*.log<br>
+.env</code></pre><br>
+<h3 id="optimize-layer-caching">Optimize layer caching</h3><br>
+<p>Place frequently changing instructions at the bottom of<br>
+Dockerfile.</p><br>
+<h3 id="use-alpine-images">Use Alpine images</h3><br>
+<pre><code>docker pull node:16-alpine</code></pre><br>
+<p>Smaller size than full distributions.</p><br>
+<h2 id="bash-tips-for-docker">Bash Tips for Docker</h2><br>
+<h3 id="handle-container-names-with-spaces">Handle container names with<br>
+spaces</h3><br>
+<p>Always quote container names:</p><br>
+<pre><code>docker exec -it {{CONTENT}}quot;my container name{{CONTENT}}quot; bash</code></pre><br>
+<h3 id="loop-through-containers">Loop through containers</h3><br>
+<pre><code>for container in $(docker ps -q); do<br>
+    echo {{CONTENT}}quot;Container: $container{{CONTENT}}quot;<br>
+    docker exec $container ps aux<br>
+done</code></pre><br>
+<h3 id="conditional-container-operations">Conditional container<br>
+operations</h3><br>
+<pre><code>if docker ps | grep -q nginx; then<br>
+    echo {{CONTENT}}quot;Nginx is running{{CONTENT}}quot;<br>
+else<br>
+    docker run -d --name nginx nginx<br>
+fi</code></pre><br>
+<h3 id="save-container-logs">Save container logs</h3><br>
+<pre><code>docker logs container_name {{CONTENT}}gt; container.log 2{{CONTENT}}gt;{{CONTENT}}amp;1</code></pre><br>
+<h3 id="backup-and-restore-containers">Backup and restore<br>
+containers</h3><br>
+<p>Export container:</p><br>
+<pre><code>docker export container_name {{CONTENT}}gt; backup.tar</code></pre><br>
+<p>Import container:</p><br>
+<pre><code>docker import backup.tar my-image:latest</code></pre><br>
+<h2 id="quick-reference">Quick Reference</h2><br>
+<table><br>
+<thead><br>
+<tr class="header"><br>
+<th>Command</th><br>
+<th>Description</th><br>
+</tr><br>
+</thead><br>
+<tbody><br>
+<tr class="odd"><br>
+<td><code>docker run -it</code></td><br>
+<td>Run interactively</td><br>
+</tr><br>
+<tr class="even"><br>
+<td><code>docker run -d</code></td><br>
+<td>Run in background</td><br>
+</tr><br>
+<tr class="odd"><br>
+<td><code>docker ps</code></td><br>
+<td>List running containers</td><br>
+</tr><br>
+<tr class="even"><br>
+<td><code>docker ps -a</code></td><br>
+<td>List all containers</td><br>
+</tr><br>
+<tr class="odd"><br>
+<td><code>docker stop</code></td><br>
+<td>Stop container</td><br>
+</tr><br>
+<tr class="even"><br>
+<td><code>docker rm</code></td><br>
+<td>Remove container</td><br>
+</tr><br>
+<tr class="odd"><br>
+<td><code>docker images</code></td><br>
+<td>List images</td><br>
+</tr><br>
+<tr class="even"><br>
+<td><code>docker rmi</code></td><br>
+<td>Remove image</td><br>
+</tr><br>
+<tr class="odd"><br>
+<td><code>docker exec -it</code></td><br>
+<td>Execute command in container</td><br>
+</tr><br>
+<tr class="even"><br>
+<td><code>docker logs</code></td><br>
+<td>View container logs</td><br>
+</tr><br>
+<tr class="odd"><br>
+<td><code>docker build</code></td><br>
+<td>Build image from Dockerfile</td><br>
+</tr><br>
+<tr class="even"><br>
+<td><code>docker-compose up</code></td><br>
+<td>Start services</td><br>
+</tr><br>
+<tr class="odd"><br>
+<td><code>docker-compose down</code></td><br>
+<td>Stop services</td><br>
+</tr><br>
+<tr class="even"><br>
+<td><code>docker system prune</code></td><br>
+<td>Clean up unused resources</td><br>
+</tr><br>
+</tbody><br>
+</table><br>
   </main>
 
   <div id="footer"></div>
   <script src="../assets/js/utils/component-loader.js"></script>
+<script src="../assets/js/script.js"></script>
 </body>
 </html>
