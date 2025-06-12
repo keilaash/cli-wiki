@@ -1,6 +1,8 @@
 # Command Line Interface (CLI): Your Gateway to Power Computing
 
-> ⚠️ **Disclaimer:** This wiki is a work in progress and currently under active development. Content may be incomplete, reorganized, or updated frequently. Contributions, corrections, and suggestions are welcome as this guide evolves.
+> ⚠️ **Disclaimer:** This wiki is a work in progress and currently under active development. Content may be incomplete, reorganized, or updated frequently. Contributions, corrections, and suggestions are welcome as this guide evolves.  
+
+> 💡 If you'd like to contribute, visit the GitHub repository: [https://github.com/keilaash/cli-wiki](https://github.com/keilaash/cli-wiki)
 
 ## What is a CLI?
 

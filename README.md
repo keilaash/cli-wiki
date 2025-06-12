@@ -12,6 +12,22 @@ This wiki is in **early development** and evolving constantly. Many sections are
 
 Your feedback and contributions can really help shape it.
 
+## ✍️ Wiki Format & Philosophy
+
+This wiki is designed to be:
+
+- **Simple**: Focused, clear explanations without unnecessary jargon.
+- **Straightforward**: Minimal fluff — just what you need to understand and apply.
+- **Scenario-Based**: Includes practical examples to show real-world usage.
+- **Beginner-Friendly**: Easy to follow, even if you're just starting out.
+
+Each section aims to answer:
+> *What is this? Why use it? How do I use it effectively?*
+
+Examples are included where needed to clarify usage and help users quickly grasp concepts.
+
+If you contribute, please follow this style so the wiki stays clean and approachable for everyone.
+
 ## 📚 View the Wiki
 
 You can explore the wiki online here: [https://cli-wiki.keil.website/](https://cli-wiki.keil.website/)
