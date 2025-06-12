@@ -6,6 +6,12 @@ A CLI-based personal wiki built with [mdBook](https://rust-lang.github.io/mdBook
 
 I’m a student passionate about learning. I wanted to learn more about Linux cli tools and I am documenting what I have learnt here. This project is my attempt to create a structured knowledge base while learning. Contributions are welcome — let’s build and learn together!
 
+## 🚧 Status: Work in Progress
+
+This wiki is in **early development** and evolving constantly. Many sections are still incomplete or rough drafts. Expect updates, changes, and occasional reorganization as I build it out.
+
+Your feedback and contributions can really help shape it.
+
 ## 📚 View the Wiki
 
 You can explore the wiki online here: [https://cli-wiki.keil.website/](https://cli-wiki.keil.website/)
