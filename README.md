@@ -8,7 +8,7 @@ I’m a student passionate about learning. I wanted to learn more about Linux cl
 
 ## 📚 View the Wiki
 
-You can explore the wiki online here: [cli-wiki.keil.website](cli-wiki.keil.website)
+You can explore the wiki online here: [https://cli-wiki.keil.website/](https://cli-wiki.keil.website/)
 
 ## 💻 Source Code
 
