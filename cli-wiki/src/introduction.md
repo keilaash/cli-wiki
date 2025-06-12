@@ -1,5 +1,7 @@
 # Command Line Interface (CLI): Your Gateway to Power Computing
 
+> ⚠️ **Disclaimer:** This wiki is a work in progress and currently under active development. Content may be incomplete, reorganized, or updated frequently. Contributions, corrections, and suggestions are welcome as this guide evolves.
+
 ## What is a CLI?
 
 A **Command Line Interface (CLI)** is a text-based way to interact with your computer using typed commands instead of clicking buttons and icons. Think of it as having a direct conversation with your computer using a specific language it understands.
