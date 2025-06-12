@@ -1,0 +1,382 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>yt-dlp - CLI Wiki</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">CLI Wiki</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="yt-dlp-command-wiki"><a class="header" href="#yt-dlp-command-wiki">yt-dlp Command Wiki</a></h1>
+<p>A comprehensive guide to downloading videos and audio from YouTube and other sites using yt-dlp.</p>
+<h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
+<pre><code>pip install yt-dlp
+</code></pre>
+<p>Update to latest version:</p>
+<pre><code>pip install -U yt-dlp
+</code></pre>
+<h2 id="basic-usage"><a class="header" href="#basic-usage">Basic Usage</a></h2>
+<h3 id="download-any-video-default-quality"><a class="header" href="#download-any-video-default-quality">Download any video (default quality)</a></h3>
+<pre><code>yt-dlp https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="download-best-quality-available"><a class="header" href="#download-best-quality-available">Download best quality available</a></h3>
+<pre><code>yt-dlp -f best https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="download-specific-quality-1080p-max"><a class="header" href="#download-specific-quality-1080p-max">Download specific quality (1080p max)</a></h3>
+<pre><code>yt-dlp -f "best[height&lt;=1080]" https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="download-720p-max"><a class="header" href="#download-720p-max">Download 720p max</a></h3>
+<pre><code>yt-dlp -f "best[height&lt;=720]" https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h2 id="audio-only-downloads"><a class="header" href="#audio-only-downloads">Audio Only Downloads</a></h2>
+<h3 id="download-as-mp3"><a class="header" href="#download-as-mp3">Download as MP3</a></h3>
+<pre><code>yt-dlp -x --audio-format mp3 https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="download-as-mp3-with-best-quality"><a class="header" href="#download-as-mp3-with-best-quality">Download as MP3 with best quality</a></h3>
+<pre><code>yt-dlp -x --audio-format mp3 --audio-quality 0 https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="download-as-wav-lossless"><a class="header" href="#download-as-wav-lossless">Download as WAV (lossless)</a></h3>
+<pre><code>yt-dlp -x --audio-format wav https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="download-as-m4a-good-for-apple-devices"><a class="header" href="#download-as-m4a-good-for-apple-devices">Download as M4A (good for Apple devices)</a></h3>
+<pre><code>yt-dlp -x --audio-format m4a https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h2 id="file-naming"><a class="header" href="#file-naming">File Naming</a></h2>
+<h3 id="clean-filename-no-video-id"><a class="header" href="#clean-filename-no-video-id">Clean filename (no video ID)</a></h3>
+<pre><code>yt-dlp -o "%(title)s.%(ext)s" https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="include-uploader-name"><a class="header" href="#include-uploader-name">Include uploader name</a></h3>
+<pre><code>yt-dlp -o "%(uploader)s - %(title)s.%(ext)s" https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="include-upload-date"><a class="header" href="#include-upload-date">Include upload date</a></h3>
+<pre><code>yt-dlp -o "%(upload_date)s - %(title)s.%(ext)s" https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="organize-by-uploader-folder"><a class="header" href="#organize-by-uploader-folder">Organize by uploader folder</a></h3>
+<pre><code>yt-dlp -o "%(uploader)s/%(title)s.%(ext)s" https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h2 id="playlist-downloads"><a class="header" href="#playlist-downloads">Playlist Downloads</a></h2>
+<h3 id="download-entire-playlist"><a class="header" href="#download-entire-playlist">Download entire playlist</a></h3>
+<pre><code>yt-dlp https://www.youtube.com/playlist?list=PLrAXtmRdnEQy6nuLMfqVg_7Bfs6qQD-Va
+</code></pre>
+<h3 id="download-playlist-as-mp3s"><a class="header" href="#download-playlist-as-mp3s">Download playlist as MP3s</a></h3>
+<pre><code>yt-dlp -x --audio-format mp3 https://www.youtube.com/playlist?list=PLrAXtmRdnEQy6nuLMfqVg_7Bfs6qQD-Va
+</code></pre>
+<h3 id="download-only-one-video-from-playlist-url"><a class="header" href="#download-only-one-video-from-playlist-url">Download only one video from playlist URL</a></h3>
+<pre><code>yt-dlp --no-playlist https://www.youtube.com/watch?v=dQw4w9WgXcQ&amp;list=PLrAXtmRdnEQy6nuLMfqVg_7Bfs6qQD-Va
+</code></pre>
+<h3 id="download-specific-range-from-playlist-videos-1-5"><a class="header" href="#download-specific-range-from-playlist-videos-1-5">Download specific range from playlist (videos 1-5)</a></h3>
+<pre><code>yt-dlp --playlist-start 1 --playlist-end 5 https://www.youtube.com/playlist?list=PLrAXtmRdnEQy6nuLMfqVg_7Bfs6qQD-Va
+</code></pre>
+<h3 id="download-only-new-videos-skip-already-downloaded"><a class="header" href="#download-only-new-videos-skip-already-downloaded">Download only new videos (skip already downloaded)</a></h3>
+<pre><code>yt-dlp --download-archive downloaded.txt https://www.youtube.com/playlist?list=PLrAXtmRdnEQy6nuLMfqVg_7Bfs6qQD-Va
+</code></pre>
+<h2 id="metadata-and-thumbnails"><a class="header" href="#metadata-and-thumbnails">Metadata and Thumbnails</a></h2>
+<h3 id="add-metadata-to-audio-files"><a class="header" href="#add-metadata-to-audio-files">Add metadata to audio files</a></h3>
+<pre><code>yt-dlp -x --audio-format mp3 --add-metadata https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="embed-thumbnail-as-album-art"><a class="header" href="#embed-thumbnail-as-album-art">Embed thumbnail as album art</a></h3>
+<pre><code>yt-dlp -x --audio-format mp3 --embed-thumbnail https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="download-thumbnail-separately"><a class="header" href="#download-thumbnail-separately">Download thumbnail separately</a></h3>
+<pre><code>yt-dlp --write-thumbnail https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="all-metadata-options-combined"><a class="header" href="#all-metadata-options-combined">All metadata options combined</a></h3>
+<pre><code>yt-dlp -x --audio-format mp3 --add-metadata --embed-thumbnail --write-thumbnail https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h2 id="subtitles"><a class="header" href="#subtitles">Subtitles</a></h2>
+<h3 id="download-video-with-subtitles"><a class="header" href="#download-video-with-subtitles">Download video with subtitles</a></h3>
+<pre><code>yt-dlp --write-subs https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="download-auto-generated-subtitles"><a class="header" href="#download-auto-generated-subtitles">Download auto-generated subtitles</a></h3>
+<pre><code>yt-dlp --write-auto-subs https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="download-specific-language-subtitles"><a class="header" href="#download-specific-language-subtitles">Download specific language subtitles</a></h3>
+<pre><code>yt-dlp --write-subs --sub-langs en https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="embed-subtitles-in-video"><a class="header" href="#embed-subtitles-in-video">Embed subtitles in video</a></h3>
+<pre><code>yt-dlp --embed-subs https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h2 id="error-handling"><a class="header" href="#error-handling">Error Handling</a></h2>
+<h3 id="ignore-errors-and-continue"><a class="header" href="#ignore-errors-and-continue">Ignore errors and continue</a></h3>
+<pre><code>yt-dlp -i https://www.youtube.com/playlist?list=PLrAXtmRdnEQy6nuLMfqVg_7Bfs6qQD-Va
+</code></pre>
+<h3 id="retry-failed-downloads"><a class="header" href="#retry-failed-downloads">Retry failed downloads</a></h3>
+<pre><code>yt-dlp --retries 3 https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="skip-unavailable-videos"><a class="header" href="#skip-unavailable-videos">Skip unavailable videos</a></h3>
+<pre><code>yt-dlp --ignore-errors https://www.youtube.com/playlist?list=PLrAXtmRdnEQy6nuLMfqVg_7Bfs6qQD-Va
+</code></pre>
+<h2 id="advanced-options"><a class="header" href="#advanced-options">Advanced Options</a></h2>
+<h3 id="limit-download-speed-1mbs"><a class="header" href="#limit-download-speed-1mbs">Limit download speed (1MB/s)</a></h3>
+<pre><code>yt-dlp --limit-rate 1M https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="download-only-videos-shorter-than-10-minutes"><a class="header" href="#download-only-videos-shorter-than-10-minutes">Download only videos shorter than 10 minutes</a></h3>
+<pre><code>yt-dlp --match-filter "duration &lt; 600" https://www.youtube.com/playlist?list=PLrAXtmRdnEQy6nuLMfqVg_7Bfs6qQD-Va
+</code></pre>
+<h3 id="download-only-videos-uploaded-after-specific-date"><a class="header" href="#download-only-videos-uploaded-after-specific-date">Download only videos uploaded after specific date</a></h3>
+<pre><code>yt-dlp --dateafter 20240101 https://www.youtube.com/playlist?list=PLrAXtmRdnEQy6nuLMfqVg_7Bfs6qQD-Va
+</code></pre>
+<h3 id="use-proxy"><a class="header" href="#use-proxy">Use proxy</a></h3>
+<pre><code>yt-dlp --proxy http://proxy.example.com:8080 https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h2 id="bash-tips-and-tricks"><a class="header" href="#bash-tips-and-tricks">Bash Tips and Tricks</a></h2>
+<h3 id="handle-urls-with-special-characters"><a class="header" href="#handle-urls-with-special-characters">Handle URLs with special characters</a></h3>
+<p>Always wrap URLs in quotes to avoid bash interpretation:</p>
+<pre><code>yt-dlp "https://www.youtube.com/watch?v=dQw4w9WgXcQ&amp;t=30s"
+</code></pre>
+<h3 id="escape-special-characters-in-filenames"><a class="header" href="#escape-special-characters-in-filenames">Escape special characters in filenames</a></h3>
+<p>Use single quotes to prevent bash from interpreting special characters:</p>
+<pre><code>yt-dlp -o '%(title)s.%(ext)s' https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="download-multiple-urls-at-once"><a class="header" href="#download-multiple-urls-at-once">Download multiple URLs at once</a></h3>
+<pre><code>yt-dlp https://www.youtube.com/watch?v=dQw4w9WgXcQ https://www.youtube.com/watch?v=another_video
+</code></pre>
+<h3 id="use-a-file-with-urls"><a class="header" href="#use-a-file-with-urls">Use a file with URLs</a></h3>
+<p>Create a file called <code>urls.txt</code> with one URL per line, then:</p>
+<pre><code>yt-dlp -a urls.txt
+</code></pre>
+<h3 id="background-downloads"><a class="header" href="#background-downloads">Background downloads</a></h3>
+<p>Run in background and save output to log:</p>
+<pre><code>nohup yt-dlp https://www.youtube.com/playlist?list=PLrAXtmRdnEQy6nuLMfqVg_7Bfs6qQD-Va &gt; download.log 2&gt;&amp;1 &amp;
+</code></pre>
+<h3 id="check-if-command-succeeded"><a class="header" href="#check-if-command-succeeded">Check if command succeeded</a></h3>
+<pre><code>if yt-dlp https://www.youtube.com/watch?v=dQw4w9WgXcQ; then
+    echo "Download successful"
+else
+    echo "Download failed"
+fi
+</code></pre>
+<h2 id="common-issues-and-solutions"><a class="header" href="#common-issues-and-solutions">Common Issues and Solutions</a></h2>
+<h3 id="error-unable-to-download-video-data"><a class="header" href="#error-unable-to-download-video-data">"ERROR: unable to download video data"</a></h3>
+<p>Try updating yt-dlp first:</p>
+<pre><code>pip install -U yt-dlp
+</code></pre>
+<h3 id="age-restricted-videos"><a class="header" href="#age-restricted-videos">Age-restricted videos</a></h3>
+<p>Use cookies from your browser:</p>
+<pre><code>yt-dlp --cookies-from-browser chrome https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="geo-blocked-videos"><a class="header" href="#geo-blocked-videos">Geo-blocked videos</a></h3>
+<p>Use a VPN or proxy:</p>
+<pre><code>yt-dlp --proxy socks5://127.0.0.1:1080 https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="very-long-filenames"><a class="header" href="#very-long-filenames">Very long filenames</a></h3>
+<p>Limit filename length:</p>
+<pre><code>yt-dlp --trim-filenames 100 https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h2 id="useful-combinations"><a class="header" href="#useful-combinations">Useful Combinations</a></h2>
+<h3 id="perfect-mp3-download-with-metadata"><a class="header" href="#perfect-mp3-download-with-metadata">Perfect MP3 download with metadata</a></h3>
+<pre><code>yt-dlp -x --audio-format mp3 --audio-quality 0 --add-metadata --embed-thumbnail -o "%(title)s.%(ext)s" https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h3 id="archive-entire-channel"><a class="header" href="#archive-entire-channel">Archive entire channel</a></h3>
+<pre><code>yt-dlp -f "best[height&lt;=1080]" --download-archive archive.txt -o "%(uploader)s/%(upload_date)s - %(title)s.%(ext)s" https://www.youtube.com/@channelname
+</code></pre>
+<h3 id="download-with-subtitles-and-metadata"><a class="header" href="#download-with-subtitles-and-metadata">Download with subtitles and metadata</a></h3>
+<pre><code>yt-dlp --write-subs --embed-subs --add-metadata --embed-thumbnail -o "%(title)s.%(ext)s" https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</code></pre>
+<h2 id="quick-reference"><a class="header" href="#quick-reference">Quick Reference</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>-f best</code></td><td>Download best quality</td></tr>
+<tr><td><code>-f "best[height&lt;=720]"</code></td><td>Download max 720p</td></tr>
+<tr><td><code>-x --audio-format mp3</code></td><td>Extract audio as MP3</td></tr>
+<tr><td><code>-o "%(title)s.%(ext)s"</code></td><td>Clean filename</td></tr>
+<tr><td><code>--add-metadata</code></td><td>Add title, artist info</td></tr>
+<tr><td><code>--embed-thumbnail</code></td><td>Add album art</td></tr>
+<tr><td><code>--write-subs</code></td><td>Download subtitles</td></tr>
+<tr><td><code>--no-playlist</code></td><td>Single video only</td></tr>
+<tr><td><code>-i</code></td><td>Ignore errors</td></tr>
+<tr><td><code>--download-archive file.txt</code></td><td>Track downloaded videos</td></tr>
+</tbody></table>
+</div>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="docker.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="docker.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
