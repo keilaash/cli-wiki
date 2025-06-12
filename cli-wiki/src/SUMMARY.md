@@ -4,8 +4,20 @@
 
 # Main Sections
 
+- [Git & GitHub](./git-gh/README.md)
+  - [Git Commands](./git-gh/git-commands.md)
+  - [GitHub CLI Setup](./git-gh/github-cli-setup.md)
+
+- [Security](./security/README.md)
+  - [GPG Key Setup](./security/gpg-key-setup.md)
+
+- [Server Tools](./server-tools/README.md)
+  - [SSH Commands](./server-tools/ssh-commands.md)
+  - [SCP Commands](./server-tools/scp-commands.md)
+
 - [Containers](./containers/README.md)
-    - [Docker](./containers/docker.md)
+  - [Docker](./containers/docker.md)
+
 - [Entertainment](./entertainment/README.md)
-    - [yt-dlp](./entertainment/yt-dlp.md)
+  - [yt-dlp](./entertainment/yt-dlp.md)
 
