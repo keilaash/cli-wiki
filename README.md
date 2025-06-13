@@ -4,7 +4,7 @@ A CLI-based personal wiki built with [mdBook](https://rust-lang.github.io/mdBook
 
 ## About
 
-I’m a student passionate about learning. I want to learn more about Linux cli tools and I am documenting what I have learnt here. This project is my attempt to create a structured knowledge base while learning. Contributions are welcome, let’s build and learn together!
+I’m a student passionate about learning. I want to learn more about Linux CLI tools and I am documenting what I have learnt here. This project is my attempt to create a structured knowledge base while learning. Contributions are welcome, let’s build and learn together!
 
 ## 🚧 Status: Work in Progress
 
@@ -31,6 +31,67 @@ If you contribute, please follow this style so the wiki stays clean and approach
 ## 📚 View the Wiki
 
 You can explore the wiki online here: [https://cli-wiki.keil.website/](https://cli-wiki.keil.website/)
+
+## 📦 How to Build the Wiki with mdBook
+
+The `.md` files live inside `cli-wiki/src` and are compiled into a static site using [mdBook](https://rust-lang.github.io/mdBook/).
+
+### 📥 Install `mdBook`
+
+If you have [Rust](https://www.rust-lang.org/tools/install) installed:
+
+```bash
+cargo install mdbook
+```
+
+Or install via package manager:
+
+- **Arch Linux**: `sudo pacman -S mdbook`
+- **macOS (Homebrew)**: `brew install mdbook`
+- **Nix**: `nix-env -iA nixpkgs.mdbook`
+
+### ▶️ Build and Serve Locally
+
+Run this from the project root (`cli-wiki`):
+
+```bash
+mdbook serve
+```
+
+This starts a local development server and watches for changes:
+
+```
+Serving on http://localhost:3000
+```
+
+### 📁 File Structure
+
+```
+cli-wiki/
+├── src/
+│   ├── introduction.md
+│   ├── git-gh/
+│   ├── server-tools/
+│   ├── ...
+│   └── SUMMARY.md
+├── book.toml
+└── README.md
+```
+
+- `src/SUMMARY.md` defines the wiki structure.
+- `book.toml` contains the mdBook configuration.
+- Output is generated in the `book/` directory after build.
+
+### 📤 Publish to GitHub Pages
+
+To publish your wiki to GitHub Pages:
+
+1. Build it:
+   ```bash
+   mdbook build
+   ```
+
+2. Deploy the `book/` directory (you can use `gh-pages` branch or GitHub Actions — let me know if you'd like setup help).
 
 ## 💻 Source Code
 
