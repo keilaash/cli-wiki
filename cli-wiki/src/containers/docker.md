@@ -1,317 +1,488 @@
-# Docker Command Wiki
+# Docker Command Guide
 
 A comprehensive guide to installing, managing, and using Docker containers.
+
+---
+
+## What is Docker?
+
+**Docker** is a tool that lets you **package applications into containers** — lightweight, portable environments that run consistently across machines.
+
+With Docker, you can:
+
+* Package code, dependencies, and system tools into one unit
+* Run the same app on your laptop, server, or cloud
+* Avoid "it works on my machine" problems
+* Test, scale, and deploy software faster
+
+Docker helps developers **isolate applications** and **ship them with confidence**.
+
+> Think of a container as a box with everything your app needs to run — regardless of where it's deployed.
+
+---
 
 ## Installation
 
 ### Ubuntu/Debian
 
-    sudo apt update
-    sudo apt install apt-transport-https ca-certificates curl software-properties-common
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-    sudo apt update
-    sudo apt install docker-ce docker-ce-cli containerd.io
+```bash
+sudo apt update
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io
+```
 
 ### CentOS/RHEL/Fedora
 
-    sudo yum install -y yum-utils
-    sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-    sudo yum install docker-ce docker-ce-cli containerd.io
+```bash
+sudo dnf install -y dnf-plugins-core
+sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+sudo dnf install -y docker-ce docker-ce-cli containerd.io
+```
 
 ### macOS
 
-Install Docker Desktop from https://docker.com/products/docker-desktop
+Install Docker Desktop from [https://docker.com/products/docker-desktop](https://docker.com/products/docker-desktop)
 
 ### Windows
 
-Install Docker Desktop from https://docker.com/products/docker-desktop
+Install Docker Desktop from [https://docker.com/products/docker-desktop](https://docker.com/products/docker-desktop)
 
 ### Post-Installation Setup
 
 Add your user to docker group (Linux):
 
-    sudo usermod -aG docker $USER
-    newgrp docker
+```bash
+sudo usermod -aG docker $USER
+newgrp docker
+```
 
 Start Docker service:
 
-    sudo systemctl start docker
-    sudo systemctl enable docker
+```bash
+sudo systemctl start docker
+sudo systemctl enable docker
+```
 
 Verify installation:
 
-    docker --version
-    docker run hello-world
+```bash
+docker --version # shows currently installed version
+docker run hello-world
+```
+
+---
 
 ## Basic Container Operations
 
 ### Run a container
 
-    docker run ubuntu
+```bash
+docker run ubuntu
+```
 
 ### Run container interactively
 
-    docker run -it ubuntu bash
+```bash
+docker run -it ubuntu bash
+```
 
 ### Run container in background (detached)
 
-    docker run -d nginx
+```bash
+docker run -d nginx
+```
 
 ### Run with custom name
 
-    docker run --name my-nginx nginx
+```bash
+docker run --name my-nginx nginx
+```
 
 ### Run with port mapping
 
-    docker run -p 8080:80 nginx
+```bash
+docker run -p 8080:80 nginx
+```
 
 ### Run with volume mounting
 
-    docker run -v /host/path:/container/path ubuntu
+```bash
+docker run -v /host/path:/container/path ubuntu
+```
 
 ### Run with environment variables
 
-    docker run -e MYSQL_ROOT_PASSWORD=mypassword mysql
+```bash
+docker run -e MYSQL_ROOT_PASSWORD=mypassword mysql
+```
 
 ### Run and remove when stopped
 
-    docker run --rm ubuntu echo "Hello World"
+```bash
+docker run --rm ubuntu echo "Hello World"
+```
+
+---
 
 ## Container Management
 
 ### List running containers
 
-    docker ps
+```bash
+docker ps
+```
 
 ### List all containers (including stopped)
 
-    docker ps -a
+```bash
+docker ps -a
+```
 
 ### Stop a container
 
-    docker stop container_name
+```bash
+docker stop container_name
+```
 
 ### Start a stopped container
 
-    docker start container_name
+```bash
+docker start container_name
+```
 
 ### Restart a container
 
-    docker restart container_name
+```bash
+docker restart container_name
+```
 
 ### Remove a container
 
-    docker rm container_name
+```bash
+docker rm container_name
+```
 
 ### Remove all stopped containers
 
-    docker container prune
+```bash
+docker container prune
+```
 
 ### Force remove a running container
 
-    docker rm -f container_name
+```bash
+docker rm -f container_name
+```
 
 ### Execute command in running container
 
-    docker exec -it container_name bash
+```bash
+docker exec -it container_name bash
+```
 
 ### Copy files to/from container
 
-    docker cp file.txt container_name:/path/to/destination
-    docker cp container_name:/path/to/file.txt ./local/path
+```bash
+docker cp file.txt container_name:/path/to/destination
+docker cp container_name:/path/to/file.txt ./local/path
+```
 
 ### View container logs
 
-    docker logs container_name
+```bash
+docker logs container_name
+```
 
 ### Follow logs in real-time
 
-    docker logs -f container_name
+```bash
+docker logs -f container_name
+```
 
 ### View container resource usage
 
-    docker stats
+```bash
+docker stats
+```
 
 ### Inspect container details
 
-    docker inspect container_name
+```bash
+docker inspect container_name
+```
+
+---
 
 ## Image Management
 
 ### List local images
 
-    docker images
+```bash
+docker images
+```
 
 ### Pull an image from registry
 
-    docker pull ubuntu:20.04
+```bash
+docker pull ubuntu:20.04
+```
 
 ### Remove an image
 
-    docker rmi image_name
+```bash
+docker rmi image_name
+```
 
 ### Remove unused images
 
-    docker image prune
+```bash
+docker image prune
+```
 
 ### Remove all unused images
 
-    docker image prune -a
+```bash
+docker image prune -a
+```
 
 ### Build image from Dockerfile
 
-    docker build -t my-app .
+```bash
+docker build -t my-app .
+```
 
 ### Build with custom Dockerfile name
 
-    docker build -t my-app -f custom.dockerfile .
+```bash
+docker build -t my-app -f custom.dockerfile .
+```
 
 ### Tag an image
 
-    docker tag source_image:tag target_image:tag
+```bash
+docker tag source_image:tag target_image:tag
+```
 
 ### Push image to registry
 
-    docker push username/image_name:tag
+```bash
+docker push username/image_name:tag
+```
 
 ### Search for images
 
-    docker search nginx
+```bash
+docker search nginx
+```
 
 ### View image history
 
-    docker history image_name
+```bash
+docker history image_name
+```
+
+---
 
 ## Docker Compose
 
 ### Install Docker Compose (Linux)
 
-    sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-    sudo chmod +x /usr/local/bin/docker-compose
+```bash
+sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+```
 
 ### Start services defined in docker-compose.yml
 
-    docker-compose up
+```bash
+docker-compose up
+```
 
 ### Start services in background
 
-    docker-compose up -d
+```bash
+docker-compose up -d
+```
 
 ### Stop services
 
-    docker-compose down
+```bash
+docker-compose down
+```
 
 ### View running services
 
-    docker-compose ps
+```bash
+docker-compose ps
+```
 
 ### View logs
 
-    docker-compose logs
+```bash
+docker-compose logs
+```
 
 ### Follow logs
 
-    docker-compose logs -f
+```bash
+docker-compose logs -f
+```
 
 ### Rebuild and start services
 
-    docker-compose up --build
+```bash
+docker-compose up --build
+```
 
 ### Scale a service
 
-    docker-compose up --scale web=3
+```bash
+docker-compose up --scale web=3
+```
 
 ### Execute command in service
 
-    docker-compose exec service_name bash
+```bash
+docker-compose exec service_name bash
+```
+
+---
 
 ## Networking
 
 ### List networks
 
-    docker network ls
+```bash
+docker network ls
+```
 
 ### Create a network
 
-    docker network create my-network
+```bash
+docker network create my-network
+```
 
 ### Connect container to network
 
-    docker network connect my-network container_name
+```bash
+docker network connect my-network container_name
+```
 
 ### Disconnect container from network
 
-    docker network disconnect my-network container_name
+```bash
+docker network disconnect my-network container_name
+```
 
 ### Run container on specific network
 
-    docker run --network my-network nginx
+```bash
+docker run --network my-network nginx
+```
 
 ### Remove network
 
-    docker network rm my-network
+```bash
+docker network rm my-network
+```
 
 ### Inspect network
 
-    docker network inspect my-network
+```bash
+docker network inspect my-network
+```
+
+---
 
 ## Volumes
 
 ### List volumes
 
-    docker volume ls
+```bash
+docker volume ls
+```
 
 ### Create a volume
 
-    docker volume create my-volume
+```bash
+docker volume create my-volume
+```
 
 ### Remove a volume
 
-    docker volume rm my-volume
+```bash
+docker volume rm my-volume
+```
 
 ### Remove unused volumes
 
-    docker volume prune
+```bash
+docker volume prune
+```
 
 ### Inspect volume
 
-    docker volume inspect my-volume
+```bash
+docker volume inspect my-volume
+```
 
 ### Run container with named volume
 
-    docker run -v my-volume:/data ubuntu
+```bash
+docker run -v my-volume:/data ubuntu
+```
 
 ### Run container with bind mount
 
-    docker run -v /host/path:/container/path ubuntu
+```bash
+docker run -v /host/path:/container/path ubuntu
+```
+
+---
 
 ## Common Docker Setups
 
 ### Web Server (Nginx)
 
-    docker run -d --name web-server -p 80:80 -v /path/to/html:/usr/share/nginx/html nginx
+```bash
+docker run -d --name web-server -p 80:80 -v /path/to/html:/usr/share/nginx/html nginx
+```
 
 ### Database (MySQL)
 
-    docker run -d --name mysql-db -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=mydb -p 3306:3306 mysql:8.0
+```bash
+docker run -d --name mysql-db -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=mydb -p 3306:3306 mysql:8.0
+```
 
 ### Database (PostgreSQL)
 
-    docker run -d --name postgres-db -e POSTGRES_PASSWORD=password -e POSTGRES_DB=mydb -p 5432:5432 postgres:13
+```bash
+docker run -d --name postgres-db -e POSTGRES_PASSWORD=password -e POSTGRES_DB=mydb -p 5432:5432 postgres:13
+```
 
 ### Redis Cache
 
-    docker run -d --name redis-cache -p 6379:6379 redis:alpine
+```bash
+docker run -d --name redis-cache -p 6379:6379 redis:alpine
+```
 
 ### WordPress with MySQL
 
-    docker run -d --name wordpress-db -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=wordpress mysql:8.0
-    docker run -d --name wordpress-site --link wordpress-db:mysql -p 8080:80 -e WORDPRESS_DB_HOST=mysql -e WORDPRESS_DB_NAME=wordpress -e WORDPRESS_DB_PASSWORD=password wordpress
+```bash
+docker run -d --name wordpress-db -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=wordpress mysql:8.0
+docker run -d --name wordpress-site --link wordpress-db:mysql -p 8080:80 -e WORDPRESS_DB_HOST=mysql -e WORDPRESS_DB_NAME=wordpress -e WORDPRESS_DB_PASSWORD=password wordpress
+```
 
 ### Node.js Application
 
-    docker run -d --name node-app -p 3000:3000 -v /path/to/app:/usr/src/app -w /usr/src/app node:16 npm start
+```bash
+docker run -d --name node-app -p 3000:3000 -v /path/to/app:/usr/src/app -w /usr/src/app node:16 npm start
+```
+
+---
 
 ## Dockerfile Examples
 
@@ -319,147 +490,191 @@ Verify installation:
 
 Create a file named `Dockerfile`:
 
-    FROM node:16-alpine
-    WORKDIR /usr/src/app
-    COPY package*.json ./
-    RUN npm install
-    COPY . .
-    EXPOSE 3000
-    CMD ["npm", "start"]
+```dockerfile
+FROM node:16-alpine
+WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 3000
+CMD ["npm", "start"]
+```
 
 Build and run:
 
-    docker build -t my-node-app .
-    docker run -p 3000:3000 my-node-app
+```bash
+docker build -t my-node-app .
+docker run -p 3000:3000 my-node-app
+```
 
 ### Basic Python Dockerfile
 
-    FROM python:3.9-slim
-    WORKDIR /app
-    COPY requirements.txt .
-    RUN pip install -r requirements.txt
-    COPY . .
-    EXPOSE 5000
-    CMD ["python", "app.py"]
+```dockerfile
+FROM python:3.9-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+EXPOSE 5000
+CMD ["python", "app.py"]
+```
 
 ### Multi-stage Build Example
 
-    FROM node:16 AS builder
-    WORKDIR /app
-    COPY package*.json ./
-    RUN npm install
-    COPY . .
-    RUN npm run build
-    
-    FROM nginx:alpine
-    COPY --from=builder /app/build /usr/share/nginx/html
-    EXPOSE 80
-    CMD ["nginx", "-g", "daemon off;"]
+```dockerfile
+FROM node:16 AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+FROM nginx:alpine
+COPY --from=builder /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+---
 
 ## Docker Compose Examples
 
 ### Basic docker-compose.yml
 
-    version: '3.8'
-    services:
-      web:
-        image: nginx
-        ports:
-          - "80:80"
-        volumes:
-          - ./html:/usr/share/nginx/html
-      
-      db:
-        image: mysql:8.0
-        environment:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: myapp
-        volumes:
-          - db_data:/var/lib/mysql
-    
+```yaml
+version: '3.8'
+services:
+  web:
+    image: nginx
+    ports:
+      - "80:80"
     volumes:
-      db_data:
+      - ./html:/usr/share/nginx/html
+  
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: myapp
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
+```
 
 ### WordPress with Docker Compose
 
-    version: '3.8'
-    services:
-      wordpress:
-        image: wordpress:latest
-        ports:
-          - "8080:80"
-        environment:
-          WORDPRESS_DB_HOST: db:3306
-          WORDPRESS_DB_USER: wordpress
-          WORDPRESS_DB_PASSWORD: password
-          WORDPRESS_DB_NAME: wordpress
-        depends_on:
-          - db
-      
-      db:
-        image: mysql:8.0
-        environment:
-          MYSQL_DATABASE: wordpress
-          MYSQL_USER: wordpress
-          MYSQL_PASSWORD: password
-          MYSQL_ROOT_PASSWORD: rootpassword
-        volumes:
-          - db_data:/var/lib/mysql
-    
+```yaml
+version: '3.8'
+services:
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_NAME: wordpress
+    depends_on:
+      - db
+  
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpassword
     volumes:
-      db_data:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
+```
+
+---
 
 ## System Maintenance
 
 ### View Docker system info
 
-    docker system info
+```bash
+docker system info
+```
 
 ### View disk usage
 
-    docker system df
+```bash
+docker system df
+```
 
 ### Clean up everything
 
-    docker system prune -a
+```bash
+docker system prune -a
+```
 
 ### Clean up with volumes
 
-    docker system prune -a --volumes
+```bash
+docker system prune -a --volumes
+```
 
 ### Remove all containers
 
-    docker rm -f $(docker ps -aq)
+```bash
+docker rm -f $(docker ps -aq)
+```
 
 ### Remove all images
 
-    docker rmi -f $(docker images -q)
+```bash
+docker rmi -f $(docker images -q)
+```
 
 ### Update all images
 
-    docker images --format "table {{.Repository}}:{{.Tag}}" | tail -n +2 | xargs -L1 docker pull
+```bash
+docker images --format "table {{.Repository}}:{{.Tag}}" | tail -n +2 | xargs -L1 docker pull
+```
+
+---
 
 ## Registry Operations
 
 ### Login to Docker Registry
 
-    docker login
+```bash
+docker login
+```
 
 ### Login to private registry
 
-    docker login registry.example.com
+```bash
+docker login registry.example.com
+```
 
 ### Tag for registry
 
-    docker tag my-app username/my-app:v1.0
+```bash
+docker tag my-app username/my-app:v1.0
+```
 
 ### Push to registry
 
-    docker push username/my-app:v1.0
+```bash
+docker push username/my-app:v1.0
+```
 
 ### Pull from private registry
 
-    docker pull registry.example.com/my-app:v1.0
+```bash
+docker pull registry.example.com/my-app:v1.0
+```
+
+---
 
 ## Troubleshooting
 
@@ -467,71 +682,103 @@ Build and run:
 
 Check logs:
 
-    docker logs container_name
+```bash
+docker logs container_name
+```
 
 ### Permission denied errors
 
 Fix ownership (Linux):
 
-    sudo chown -R $USER:$USER /path/to/files
+```bash
+sudo chown -R $USER:$USER /path/to/files
+```
 
 ### Port already in use
 
 Find process using port:
 
-    sudo lsof -i :8080
+```bash
+sudo lsof -i :8080
+```
 
 Kill process:
 
-    sudo kill -9 PID
+```bash
+sudo kill -9 PID
+```
 
 ### Out of disk space
 
 Clean up Docker:
 
-    docker system prune -a --volumes
+```bash
+docker system prune -a --volumes
+```
 
 ### Container runs but app doesn't work
 
 Check if container is listening on correct port:
 
-    docker exec container_name netstat -tlnp
+```bash
+docker exec container_name netstat -tlnp
+```
 
 ### Can't connect to Docker daemon
 
 Start Docker service:
 
-    sudo systemctl start docker
+```bash
+sudo systemctl start docker
+```
 
 Add user to docker group:
 
-    sudo usermod -aG docker $USER
+```bash
+sudo usermod -aG docker $USER
+```
+
+---
 
 ## Security Best Practices
 
 ### Run containers as non-root user
 
-    docker run --user 1000:1000 ubuntu
+```bash
+docker run --user 1000:1000 ubuntu
+```
 
 ### Limit container resources
 
-    docker run --memory="256m" --cpus="1.0" ubuntu
+```bash
+docker run --memory="256m" --cpus="1.0" ubuntu
+```
 
 ### Use read-only filesystem
 
-    docker run --read-only ubuntu
+```bash
+docker run --read-only ubuntu
+```
 
 ### Drop capabilities
 
-    docker run --cap-drop=ALL --cap-add=NET_BIND_SERVICE nginx
+```bash
+docker run --cap-drop=ALL --cap-add=NET_BIND_SERVICE nginx
+```
 
 ### Scan images for vulnerabilities
 
-    docker scout quickview image_name
+```bash
+docker scout quickview image_name
+```
 
 ### Use official images when possible
 
-    docker pull nginx:alpine
+```bash
+docker pull nginx:alpine
+```
+
+---
 
 ## Performance Tips
 
@@ -539,11 +786,15 @@ Add user to docker group:
 
 Instead of:
 
-    docker pull nginx:latest
+```bash
+docker pull nginx:latest
+```
 
 Use:
 
-    docker pull nginx:1.21-alpine
+```bash
+docker pull nginx:1.21-alpine
+```
 
 ### Use multi-stage builds
 
@@ -553,10 +804,12 @@ Reduces final image size by excluding build dependencies.
 
 Create `.dockerignore` file to exclude unnecessary files:
 
-    node_modules
-    .git
-    *.log
-    .env
+```
+node_modules
+.git
+*.log
+.env
+```
 
 ### Optimize layer caching
 
@@ -564,46 +817,58 @@ Place frequently changing instructions at the bottom of Dockerfile.
 
 ### Use Alpine images
 
-    docker pull node:16-alpine
+```bash
+docker pull node:16-alpine
+```
 
 Smaller size than full distributions.
 
-## Bash Tips for Docker
+---
 
-### Handle container names with spaces
+## Common Workflows
 
-Always quote container names:
+### Development Workflow
 
-    docker exec -it "my container name" bash
+```bash
+# 1. Create Dockerfile
+nano Dockerfile
 
-### Loop through containers
+# 2. Build image
+docker build -t my-app .
 
-    for container in $(docker ps -q); do
-        echo "Container: $container"
-        docker exec $container ps aux
-    done
+# 3. Run container
+docker run -d -p 8080:80 --name my-app-container my-app
 
-### Conditional container operations
+# 4. Check logs
+docker logs my-app-container
 
-    if docker ps | grep -q nginx; then
-        echo "Nginx is running"
-    else
-        docker run -d --name nginx nginx
-    fi
+# 5. Update and rebuild
+docker stop my-app-container
+docker rm my-app-container
+docker build -t my-app .
+docker run -d -p 8080:80 --name my-app-container my-app
+```
 
-### Save container logs
+### Production Deployment
 
-    docker logs container_name > container.log 2>&1
+```bash
+# 1. Pull latest code
+git pull origin main
 
-### Backup and restore containers
+# 2. Build production image
+docker build -t my-app:prod .
 
-Export container:
+# 3. Stop old container
+docker stop my-app-prod
 
-    docker export container_name > backup.tar
+# 4. Remove old container
+docker rm my-app-prod
 
-Import container:
+# 5. Start new container
+docker run -d --name my-app-prod -p 80:8080 my-app:prod
+```
 
-    docker import backup.tar my-image:latest
+---
 
 ## Quick Reference
 
