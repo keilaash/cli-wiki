@@ -91,7 +91,7 @@ To publish your wiki to GitHub Pages:
    mdbook build
    ```
 
-2. Deploy the `book/` directory (you can use `gh-pages` branch or GitHub Actions — let me know if you'd like setup help).
+2. Deploy the `book/` directory
 
 ## 💻 Source Code
 
