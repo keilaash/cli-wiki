@@ -113,7 +113,8 @@ Use two `-m` flags to add both a title and description.
 Review previous work:
 
 ```bash
-git log
+git log                      # Full history
+git log --oneline --graph    # Condensed with visual tree
 ```
 
 ### ✅ Why?
@@ -209,10 +210,6 @@ git revert <commit-hash>     # Safely undo a commit
 
 ---
 
-Absolutely — merge and pull conflicts are super common in Git workflows, so including a clear guide in your wiki will be helpful. Here's an updated **"Troubleshooting & Practical Examples"** section with dedicated help for both:
-
----
-
 ## 🛠️ Troubleshooting & Practical Examples
 
 ### 🧩 Common Issues
@@ -282,6 +279,14 @@ ssh-add ~/.ssh/id_ed25519
   git commit -m "Save work before pulling"
   git pull origin main
   ```
+  
+### 🚨 Force Push (Use with care!)
+
+```bash
+git push --force              # Overwrites remote
+git push --force-with-lease   # Safer; avoids overwriting others’ work
+```
+
 
 ---
 
