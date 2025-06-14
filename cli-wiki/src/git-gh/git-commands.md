@@ -257,7 +257,7 @@ Revert a commit (safe):
 ```bash
 git revert <commit-hash>
 ```
-### What is a Commit Hash?
+What is a Commit Hash?
 
 Every Git commit has a unique **ID** called a **commit hash** — a long string of letters and numbers that looks like:
 
@@ -270,7 +270,7 @@ a3c9e83b2d7ff1e9855a6e4b9b7297f0637b59f8
 
 ---
 
-### How to Find the Commit Hash
+How to Find the Commit Hash
 
 Run:
 
@@ -305,6 +305,12 @@ git reset --hard a3c9e83
 
 
 > Be careful — this permanently removes history.
+
+After a reset, you will need to force push changes because you are writing changes that afftects the history
+
+```bash
+git push --force
+```
 
 ---
 
