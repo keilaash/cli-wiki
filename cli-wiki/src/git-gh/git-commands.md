@@ -306,7 +306,7 @@ git reset --hard a3c9e83
 
 > Be careful — this permanently removes history.
 
-After a reset, you will need to force push changes because you are writing changes that afftects the history
+After a reset, you will need to force push changes because you are writing changes that affects the history
 
 ```bash
 git push --force
