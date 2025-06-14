@@ -17,6 +17,64 @@ This guide helps you use **SCP (Secure Copy Protocol)** to securely transfer fil
 
 ---
 
+## Prerequisites
+
+Before using SCP, you must:
+
+### 1. Ensure SSH is Installed
+
+#### On Linux/macOS (usually pre-installed):
+
+```bash
+ssh -V
+```
+
+#### On Windows (PowerShell 7+ or Git Bash):
+
+```powershell
+ssh -V
+```
+
+> If not installed, install OpenSSH from Windows Features or [Git for Windows](https://git-scm.com/downloads)
+
+---
+
+### 2. Generate an SSH Key (if needed)
+
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+> When prompted for a **passphrase**, you can either:
+>
+> * Leave it empty (less secure, but no password prompts), or
+> * Set a passphrase (recommended), and follow step 3 to avoid repeated prompts.
+
+---
+
+### 3. Add SSH Key to SSH Agent
+
+This step ensures your key is **unlocked once per session**, and avoids repeated password prompts.
+
+```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+```
+
+> If your key has a **passphrase**, you'll be asked to enter it **once** here. After that, the agent keeps it in memory.
+
+---
+
+### 4. Copy Your SSH Key to the Remote Server
+
+```bash
+ssh-copy-id user@remote
+```
+
+> This adds your public key to the remote server so you can connect without a password.
+
+---
+
 ## 1. Basic Syntax
 
 ```bash
