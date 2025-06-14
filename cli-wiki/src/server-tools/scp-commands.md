@@ -68,7 +68,7 @@ ssh-add ~/.ssh/id_ed25519
 ### 4. Copy Your SSH Key to the Remote Server
 
 ```bash
-ssh-copy-id user@remote
+ssh-copy-id user@server-ip
 ```
 
 > This adds your public key to the remote server so you can connect without a password.
@@ -92,7 +92,7 @@ You can copy:
 ## 2. Copy a File from Local to Remote
 
 ```bash
-scp file.txt user@remote:/path/to/destination/
+scp file.txt user@server-ip:/path/to/destination/
 ```
 
 > Sends `file.txt` from your computer to a directory on the remote machine
@@ -102,7 +102,7 @@ scp file.txt user@remote:/path/to/destination/
 ## 3. Copy a File from Remote to Local
 
 ```bash
-scp user@remote:/path/to/file.txt /local/destination/
+scp user@server-ip:/path/to/file.txt /local/destination/
 ```
 
 > Downloads a file from the remote machine to your current directory
@@ -112,7 +112,7 @@ scp user@remote:/path/to/file.txt /local/destination/
 ## 4. Copy a Directory Recursively
 
 ```bash
-scp -r my_folder user@remote:/path/to/destination/
+scp -r my_folder user@server-ip:/path/to/destination/
 ```
 
 > `-r` allows you to copy an entire folder and its contents
@@ -122,7 +122,7 @@ scp -r my_folder user@remote:/path/to/destination/
 ## 5. Use a Specific Port
 
 ```bash
-scp -P 2222 file.txt user@remote:/path/
+scp -P 2222 file.txt user@server-ip:/path/
 ```
 
 > If your SSH server runs on a non-default port (not 22), specify it with `-P`
@@ -142,7 +142,7 @@ scp user1@host1:/path/file.txt user2@host2:/path/
 ## 7. Preserve File Attributes
 
 ```bash
-scp -p file.txt user@remote:/path/
+scp -p file.txt user@server-ip:/path/
 ```
 
 > Keeps the original timestamps and modes (permissions)
@@ -152,7 +152,7 @@ scp -p file.txt user@remote:/path/
 ## 8. Increase Verbosity (Debugging)
 
 ```bash
-scp -v file.txt user@remote:/path/
+scp -v file.txt user@server-ip:/path/
 ```
 
 > Shows detailed output of the copy process — helpful for troubleshooting
@@ -163,12 +163,12 @@ scp -v file.txt user@remote:/path/
 
 | Command                               | Description                         |
 | ------------------------------------- | ----------------------------------- |
-| `scp file user@remote:/path/`         | Copy file to remote                 |
-| `scp user@remote:/file ./`            | Copy file from remote               |
-| `scp -r dir user@remote:/path/`       | Recursively copy directory          |
-| `scp -P 2222 file user@remote:/path/` | Use specific port                   |
-| `scp -p file user@remote:/path/`      | Preserve timestamps and permissions |
-| `scp -v file user@remote:/path/`      | Verbose output for debugging        |
+| `scp file user@server-ip:/path/`         | Copy file to remote                 |
+| `scp user@server-ip:/file ./`            | Copy file from remote               |
+| `scp -r dir user@server-ip:/path/`       | Recursively copy directory          |
+| `scp -P 2222 file user@server-ip:/path/` | Use specific port                   |
+| `scp -p file user@server-ip:/path/`      | Preserve timestamps and permissions |
+| `scp -v file user@server-ip:/path/`      | Verbose output for debugging        |
 
 
 
