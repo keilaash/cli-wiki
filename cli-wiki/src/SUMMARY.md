@@ -3,7 +3,8 @@
 [Introduction](./introduction.md)
 
 # Main Sections
-
+- [CLI Navigation](./cli-navigation/README.md)
+  - [CD](./cli-navigation/cd.md)
 - [Git & GitHub](./git-gh/README.md)
   - [Git Commands](./git-gh/git-commands.md)
   - [GitHub CLI Setup](./git-gh/github-cli-setup.md)
