@@ -4,9 +4,10 @@
 
 # Main Sections
 - [CLI Navigation](./cli-navigation/README.md)
-  - [CD](./cli-navigation/cd.md)
-  - [MV](./cli-navigation/mv.md)
-  - [CP](./cli-navigation/cp.md)
+  - [cd](./cli-navigation/cd.md)
+  - [mv](./cli-navigation/mv.md)
+  - [cp](./cli-navigation/cp.md)
+  - [rm](./cli-navigation/rm.md)
 - [Git & GitHub](./git-gh/README.md)
   - [Git Commands](./git-gh/git-commands.md)
   - [GitHub CLI Setup](./git-gh/github-cli-setup.md)

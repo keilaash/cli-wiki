@@ -1,4 +1,4 @@
-# CP Command Guide for Copying Files and Directories
+# `cp` Command Guide for Copying Files and Directories
 
 This guide helps you understand and use the `cp` (copy) command, which allows you to duplicate files and directories within a Unix-like file system.
 

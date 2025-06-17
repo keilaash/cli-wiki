@@ -1,4 +1,4 @@
-# CD Command Guide
+# `cd` Command Guide for moving between directories(folders)
 
 This guide helps you understand and use the `cd` (change directory) command, which is the core way to navigate through the filesystem in any Unix-like environment.
 
