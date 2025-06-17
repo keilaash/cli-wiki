@@ -8,6 +8,8 @@
   - [mv](./cli-navigation/mv.md)
   - [cp](./cli-navigation/cp.md)
   - [rm](./cli-navigation/rm.md)
+  - [mkdir](./cli-navigation/mkdir.md)
+  - [rmdir](./cli-navigation/rmdir.md)
 - [Git & GitHub](./git-gh/README.md)
   - [Git Commands](./git-gh/git-commands.md)
   - [GitHub CLI Setup](./git-gh/github-cli-setup.md)
