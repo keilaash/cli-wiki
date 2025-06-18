@@ -297,56 +297,58 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 ### Start services defined in docker-compose.yml
 
+> **Note:** docker-compose command has been depricated. Use docker compose instead.
+
 ```bash
-docker-compose up
+docker compose up
 ```
 
 ### Start services in background
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 ### Stop services
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
 ### View running services
 
 ```bash
-docker-compose ps
+docker compose ps
 ```
 
 ### View logs
 
 ```bash
-docker-compose logs
+docker compose logs
 ```
 
 ### Follow logs
 
 ```bash
-docker-compose logs -f
+docker compose logs -f
 ```
 
 ### Rebuild and start services
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 ### Scale a service
 
 ```bash
-docker-compose up --scale web=3
+docker compose up --scale web=3
 ```
 
 ### Execute command in service
 
 ```bash
-docker-compose exec service_name bash
+docker compose exec service_name bash
 ```
 
 ---
@@ -885,6 +887,6 @@ docker run -d --name my-app-prod -p 80:8080 my-app:prod
 | `docker exec -it` | Execute command in container |
 | `docker logs` | View container logs |
 | `docker build` | Build image from Dockerfile |
-| `docker-compose up` | Start services |
-| `docker-compose down` | Stop services |
+| `docker compose up` | Start services |
+| `docker compose down` | Stop services |
 | `docker system prune` | Clean up unused resources |
