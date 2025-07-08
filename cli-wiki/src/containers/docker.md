@@ -288,15 +288,36 @@ docker history image_name
 
 
 ## Docker Compose
+### `docker compose` vs `docker-compose`
 
-### Install Docker Compose (Linux)
-```bash
-sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-```
+There are two ways to use Docker Compose:
+
+- **`docker-compose` (hyphenated)**: This is the **older Python-based standalone command**.
+- **`docker compose` (space-separated)**: This is the **newer plugin-based command** integrated into the Docker CLI.
+
+#### Key Differences
+
+| Feature               | `docker-compose`                     | `docker compose`                      |
+|-----------------------|--------------------------------------|----------------------------------------|
+| CLI style             | Hyphenated: `docker-compose up`      | Subcommand: `docker compose up`        |
+| Installation          | Separate binary                      | Bundled with Docker (v20.10+)          |
+| Written in            | Python                               | Go (as a Docker CLI plugin)            |
+| Lifecycle             | Being deprecated                     | Actively maintained                    |
+| Performance           | Slightly slower                      | Faster and better Docker integration   |
+| Compatibility         | Widely supported                     | Preferred for modern setups            |
+
+#### Which Should You Use?
+
+Use `docker compose` (with a space) **if you're using Docker v20.10+**, as it is the officially supported method moving forward. The old `docker-compose` is being **phased out** and may not receive future updates.
+
+> Tip: If you're still using `docker-compose`, consider upgrading your Docker CLI and migrating to `docker compose`.
+
+#### Migration Note
+
+Both commands support the same `docker-compose.yml` file format, so switching typically requires **no changes** to your YAML files—just the command syntax changes.
 
 ### Start services defined in docker-compose.yml
-> **Note:** docker-compose command has been depricated. Use docker compose instead.
+> **Note:** docker-compose command will be depricated. Use docker compose instead.
 
 ```bash
 docker compose up

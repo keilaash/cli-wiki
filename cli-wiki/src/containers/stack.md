@@ -69,11 +69,11 @@ docker stack deploy -c docker-compose.yml mystack
 * **Use `deploy:` section** to define Swarm-specific settings (replicas, placement, restart policies, etc.)
 * **Avoid `build:`** in production stacks — use pre-built images.
 * Ensure all nodes have access to required **networks**, **volumes**, or **images**.
-* Stacks do **not support all docker-compose features** — e.g., no `depends_on` or `condition:` directives in Swarm.
+* Stacks do **not support all docker compose features** — e.g., no `depends_on` or `condition:` directives in Swarm.
 
 
 ## Docker stack deployment vs Compose
-| Feature               | `docker-compose`     | `docker stack deploy`      |
+| Feature               | `docker compose`     | `docker stack deploy`      |
 | --------------------- | -------------------- | -------------------------- |
 | Designed for          | Local development    | Swarm clusters             |
 | Deploys to            | Single Docker daemon | Multiple Swarm nodes       |

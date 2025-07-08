@@ -1,7 +1,5 @@
 # Summary
-
 [Introduction](./introduction.md)
-
 # Main Sections
 - [CLI Navigation](./cli-navigation/README.md)
   - [cd](./cli-navigation/cd.md)
@@ -23,6 +21,8 @@
     - [Swarm](./containers/swarm.md)
     - [Stack](./containers/stack.md)
     - [CI/CD](./containers/docker_cicd_guide.md)
+    - [Security Best Practices](containers/docker-security-best-practices.md)
+    - [Preformance Tips](containers/docker-performance-tips.md)
 - [Entertainment](./entertainment/README.md)
   - [yt-dlp](./entertainment/yt-dlp.md)
 
