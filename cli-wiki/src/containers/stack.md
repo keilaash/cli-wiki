@@ -1,12 +1,14 @@
 ### Stack Basics
+Docker **Stacks** let you deploy multi-service applications using a single `docker-compose.yml` file in Swarm mode.
+
+> Requires Docker Swarm to be initialized with `docker swarm init`.
+
 
 #### Deploy a Stack
 
 ```bash
 docker stack deploy -c docker-compose.yml mystack
 ```
-
-> Must be in Swarm mode (`docker swarm init` required)
 
 #### List Stacks
 
@@ -93,4 +95,12 @@ docker stack deploy -c docker-compose.yml mystack
 | Networking            | Bridge               | Overlay                    |
 
 
+## Docker Stack Cheat Sheet
 
+| Task                            | Command |
+|----------------------------------|---------|
+| Deploy a stack                  | `docker stack deploy -c docker-compose.yml mystack` |
+| List stacks                     | `docker stack ls` |
+| List services in a stack        | `docker stack services mystack` |
+| List running containers/tasks   | `docker stack ps mystack` |
+| Remove a stack                  | `docker stack rm mystack` |

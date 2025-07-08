@@ -23,6 +23,8 @@
 
 - [Containers](./containers/README.md)
   - [Docker](./containers/docker.md)
+    - [Swarm](./containers/swarm.md)
+    - [Stack](./containers/stack.md)
 
 - [Entertainment](./entertainment/README.md)
   - [yt-dlp](./entertainment/yt-dlp.md)

@@ -1,5 +1,4 @@
 ## Docker Swarm
-
 **Docker Swarm** is Docker’s native clustering and orchestration tool. It lets you manage a **group of Docker hosts (nodes)** as a single, virtual Docker engine, enabling scaling, high availability, and fault tolerance.
 
 With Docker Swarm, you can:
@@ -12,10 +11,8 @@ With Docker Swarm, you can:
 
 > Think of Swarm as a **self-organizing, load-balanced Docker cluster**.
 
----
 
 ### Swarm Basics
-
 #### Initialize a Swarm
 
 ```bash
@@ -50,7 +47,6 @@ docker swarm leave
 docker swarm leave --force
 ```
 
----
 
 ### Node Management
 
@@ -85,10 +81,8 @@ docker node promote <node-id>
 docker node demote <node-id>
 ```
 
----
 
 ### Services
-
 **Services** are the units of scheduling in Swarm — like containers, but designed to scale and self-heal across the cluster.
 
 #### Create a Service
@@ -132,5 +126,20 @@ docker service scale web=5
 ```bash
 docker service rm web
 ```
+
+
+## Docker Swarm Cheat Sheet
+
+| Task                      | Command |
+|---------------------------|---------|
+| Init swarm                | `docker swarm init` |
+| Join swarm                | `docker swarm join` |
+| List nodes                | `docker node ls` |
+| Drain a node              | `docker node update --availability drain <id>` |
+| Promote node              | `docker node promote <id>` |
+| Demote node               | `docker node demote <id>` |
+| Create service            | `docker service create --name web -p 80:80 nginx` |
+| Scale service             | `docker service scale web=3` |
+| Remove service            | `docker service rm web` |
 
 
