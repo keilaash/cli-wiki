@@ -178,9 +178,7 @@ tags: youruser/yourapp:latest, youruser/yourapp:${{ github.sha }}
 
 
 ## Further Reading
-- [Docker Official Docs](https://docs.docker.com/)
 - [GitHub Actions Docs](https://docs.github.com/en/actions)
 - [GitLab CI/CD Docs](https://docs.gitlab.com/ee/ci/)
-- [Docker Scout](https://docs.docker.com/scout/overview/)
 
 

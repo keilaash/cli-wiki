@@ -784,6 +784,12 @@ docker run -d --name my-app-prod -p 80:8080 my-app:prod
 ```
 
 
+## Further Reading
+- [Docker Starter Guide](https://docs.docker.com/get-started/)
+- [Docker Turorial](https://docker-curriculum.com/)
+
+
+
 ## Quick Reference
 | Command | Description |
 |---------|-------------|
