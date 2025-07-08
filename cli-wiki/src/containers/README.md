@@ -1,9 +1,9 @@
 # Containers
-This section covers containerization technologies and tools.
+This section covers containerisation technologies and tools.
 
 
 ## Overview
-Containerization is a method of packaging applications and their dependencies into isolated, lightweight units called **containers**. Unlike virtual machines, containers share the host system’s kernel, making them more resource-efficient and faster to start.
+Containerisation is a method of packaging applications and their dependencies into isolated, lightweight units called **containers**. Unlike virtual machines, containers share the host system’s kernel, making them more resource-efficient and faster to start.
 
 
 ## Why Containers?
@@ -17,7 +17,7 @@ Containerization is a method of packaging applications and their dependencies in
 - Conceptual understanding of containers
 - Docker as a container platform
 - Container orchestration tools (e.g., Docker Swarm, Kubernetes)
-- Best practices for working with containerized applications
+- Best practices for working with containerised applications
 
 
 ## Docker
@@ -60,7 +60,7 @@ When working with containers:
 ## Further Topics
 
 - Container registries (e.g., Docker Hub, GitHub Container Registry)
-- CI/CD pipelines with container integration
+- CI/CD (Continuous integration / Continuous Deployemet) pipelines with container integration
 - Comparing containers to virtual machines
 - Container security principles and tooling
 
