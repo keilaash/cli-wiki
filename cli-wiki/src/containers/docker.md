@@ -14,7 +14,12 @@ With Docker, you can:
 
 Docker helps developers **isolate applications** and **ship them with confidence**.
 
-> Think of a container as a box with everything your app needs to run — regardless of where it's deployed.
+> Think of a container as a box with everything your app needs to run — regardless of where it's deployed.  
+
+
+## Familiarity with Linux CLI
+
+If you’ve used the Linux command line before, many Docker commands will feel familiar. Docker's CLI follows similar patterns for file navigation, process control, and permission handling. This makes learning Docker more intuitive for users with a Linux or Unix-like background.  
 
 
 ## Installation
@@ -139,6 +144,8 @@ docker run --name my-nginx nginx
 docker run -p 8080:80 nginx
 ```
 
+> This means the container's internal port 80 (where the Nginx server is listening) is mapped to port 8080 on your local machine. When this container is running, users can access the web server by visiting http://localhost:8080 on the host system. Without this mapping, the service inside the container would not be reachable from outside the container. Port mapping is essential for exposing containerised services to the host or public network.  
+
 ### Run with volume mounting
 ```bash
 docker run -v /host/path:/container/path ubuntu
@@ -161,6 +168,8 @@ docker run --rm ubuntu echo "Hello World"
 ```bash
 docker ps
 ```
+
+> ps stands for process status  
 
 ### List all containers (including stopped)
 ```bash
@@ -201,6 +210,8 @@ docker rm -f container_name
 ```bash
 docker exec -it container_name bash
 ```
+
+> The command docker exec -it container_name bash lets you run an interactive shell inside a running container. exec executes a command without restarting the container, -i keeps input open, and -t allocates a terminal. Running bash starts a shell session, useful for debugging, managing files, or exploring the container like SSH.  
 
 ### Copy files to/from container
 ```bash
@@ -310,14 +321,14 @@ There are two ways to use Docker Compose:
 
 Use `docker compose` (with a space) **if you're using Docker v20.10+**, as it is the officially supported method moving forward. The old `docker-compose` is being **phased out** and may not receive future updates.
 
-> Tip: If you're still using `docker-compose`, consider upgrading your Docker CLI and migrating to `docker compose`.
+> Tip: If you're still using `docker-compose`, consider upgrading your Docker CLI and migrating to `docker compose`.  
 
 #### Migration Note
 
 Both commands support the same `docker-compose.yml` file format, so switching typically requires **no changes** to your YAML files—just the command syntax changes.
 
 ### Start services defined in docker-compose.yml
-> **Note:** docker-compose command will be depricated. Use docker compose instead.
+> **Note:** docker-compose command will be depricated. Use docker compose instead.  
 
 ```bash
 docker compose up
@@ -577,7 +588,7 @@ volumes:
   db_data:
 ```
 
->**Note:** adding secrets such as passwords in docker compose file is **not secure**. It is advised to use a secrets manager (eg. docker secrets) to store secrets or store secrets in the .env directory.
+> **Note:** adding secrets such as passwords in docker compose file is **not secure**. It is advised to use a secrets manager (eg. docker secrets) to store secrets or store secrets in the .env directory.  
 
 
 ## System Maintenance
@@ -752,7 +763,7 @@ node_modules
 .env
 ```
 
-### Optimize layer caching
+### Optimise layer caching
 Place frequently changing instructions at the bottom of Dockerfile.
 
 ### Use Alpine images

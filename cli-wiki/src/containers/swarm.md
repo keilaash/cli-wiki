@@ -8,11 +8,11 @@ With Docker Swarm, you can:
 * Deploy a full application stack using a single file (`docker-compose.yml`)
 * Maintain zero-downtime updates via rolling deployments
 
-> Think of Swarm as a **self-organizing, load-balanced Docker cluster**.
+> Think of Swarm as a **self-organising, load-balanced Docker cluster**.
 
 
 ### Swarm Basics
-#### Initialize a Swarm
+#### Initialise a Swarm
 ```bash
 docker swarm init
 ```

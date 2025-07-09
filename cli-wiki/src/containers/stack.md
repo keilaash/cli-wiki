@@ -1,7 +1,7 @@
 ### Stack Basics
 Docker **Stacks** let you deploy multi-service applications using a single `docker-compose.yml` file in Swarm mode.
 
-> Requires Docker Swarm to be initialized with `docker swarm init`.
+> Requires Docker Swarm to be initialised with `docker swarm init`.
 
 
 #### Deploy a Stack

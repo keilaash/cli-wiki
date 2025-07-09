@@ -18,7 +18,7 @@ A practical guide to integrating Docker into your Continuous Integration and Dep
 - Quicker feedback and recovery
 - Consistent and repeatable deployments
 
-CI/CD is a cornerstone of DevOps practices, promoting collaboration between development and operations teams, and enabling organizations to respond to market changes faster.
+CI/CD is a cornerstone of DevOps practices, promoting collaboration between development and operations teams, and enabling organisations to respond to market changes faster.
 
 
 ## Why Docker for CI/CD?
@@ -26,7 +26,7 @@ Docker simplifies CI/CD pipelines by offering:
 - Consistent environments across build/test/deploy stages
 - Isolation for dependencies and tools
 - Portability across local, staging, and production
-- Faster testing and deployment with containerized builds
+- Faster testing and deployment with containerised builds
 
 
 ## CI/CD Workflow Overview

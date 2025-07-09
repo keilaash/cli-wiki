@@ -31,7 +31,7 @@ docker scan your-image
 ## 5. Use Docker Secrets for Sensitive Data (Swarm Only)
 Avoid hardcoding secrets in environment variables or files. Docker Swarm provides a secure way to manage sensitive data like API keys, passwords, and TLS certificates.
 
-### Step 1: Initialize Docker Swarm
+### Step 1: Initialise Docker Swarm
 ```bash
 docker swarm init
 ```

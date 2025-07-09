@@ -16,12 +16,12 @@ CMD ["/myapp"]
 ```
 
 
-## 2. Optimize Dockerfile Layers
+## 2. Optimise Dockerfile Layers
 Group related commands together to reduce the number of layers and cache misses.
 
 
 ## 3. Leverage Build Cache
-Order Dockerfile instructions from least to most frequently changed to maximize cache efficiency.
+Order Dockerfile instructions from least to most frequently changed to maximise cache efficiency.
 
 
 ## 4. Use `.dockerignore`
