@@ -1,4 +1,4 @@
-# find
+# find command guide
 The `find` command searches for files and directories in a directory hierarchy based on specified conditions like name, type, size, modification time, and more.
 
 ## Basic Syntax

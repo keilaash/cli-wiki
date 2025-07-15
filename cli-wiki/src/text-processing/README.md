@@ -1,4 +1,5 @@
 # Text Processing Tools
+
 Text processing is a core part of shell scripting and CLI work. It allows you to extract, transform, and filter data from text files, logs, command outputs, and more.
 
 This section introduces powerful tools like:
@@ -7,6 +8,7 @@ This section introduces powerful tools like:
 - `awk` for pattern scanning and processing
 - `sed` for stream editing
 - `xargs` for building and executing command lines
+- `find` for searching for files and directories recursively based on conditions
 
 These tools are essential for data extraction, automation scripts, and efficient command-line workflows.
 
