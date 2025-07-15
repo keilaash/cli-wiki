@@ -174,6 +174,8 @@ yt-dlp -f "best[height<=720]" https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
 ## Audio Only Downloads
 
+>Note: the following commands will only work if the current directory is the home directory for linux. Use `pwd` command to check if you are in the home directory. If not in home directory, use `cd` command to change to home directory.
+
 ### Download as MP3
 
 ```bash
